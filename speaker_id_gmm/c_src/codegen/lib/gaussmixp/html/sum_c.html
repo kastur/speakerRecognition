@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8" />
+<TITLE>RTW Report - sum.c </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);}">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/sum.c" TARGET="rtwreport_document_frame">/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/sum.c</A></H4>
+<PRE id="RTWcode">
+<A NAME="1"><FONT COLOR="#888888"><I>    1   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="2"><FONT COLOR="#888888"><I>    2   </I></FONT></A><FONT COLOR="#117755"><I> * sum.c</I></FONT>
+<A NAME="3"><FONT COLOR="#888888"><I>    3   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="4"><FONT COLOR="#888888"><I>    4   </I></FONT></A><FONT COLOR="#117755"><I> * Code generation for function 'sum'</I></FONT>
+<A NAME="5"><FONT COLOR="#888888"><I>    5   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="6"><FONT COLOR="#888888"><I>    6   </I></FONT></A><FONT COLOR="#117755"><I> * C source code generated on: Wed Jan 30 22:03:32 2013</I></FONT>
+<A NAME="7"><FONT COLOR="#888888"><I>    7   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="8"><FONT COLOR="#888888"><I>    8   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="9"><FONT COLOR="#888888"><I>    9   </I></FONT></A>
+<A NAME="10"><FONT COLOR="#888888"><I>   10   </I></FONT></A><FONT COLOR="#117755"><I>/* Include files */</I></FONT>
+<A NAME="11"><FONT COLOR="#888888"><I>   11   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;rt_nonfinite.h&quot;</FONT>
+<A NAME="12"><FONT COLOR="#888888"><I>   12   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;gaussmixp.h&quot;</FONT>
+<A NAME="13"><FONT COLOR="#888888"><I>   13   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;sum.h&quot;</FONT>
+<A NAME="14"><FONT COLOR="#888888"><I>   14   </I></FONT></A>
+<A NAME="15"><FONT COLOR="#888888"><I>   15   </I></FONT></A><FONT COLOR="#117755"><I>/* Type Definitions */</I></FONT>
+<A NAME="16"><FONT COLOR="#888888"><I>   16   </I></FONT></A>
+<A NAME="17"><FONT COLOR="#888888"><I>   17   </I></FONT></A><FONT COLOR="#117755"><I>/* Named Constants */</I></FONT>
+<A NAME="18"><FONT COLOR="#888888"><I>   18   </I></FONT></A>
+<A NAME="19"><FONT COLOR="#888888"><I>   19   </I></FONT></A><FONT COLOR="#117755"><I>/* Variable Declarations */</I></FONT>
+<A NAME="20"><FONT COLOR="#888888"><I>   20   </I></FONT></A>
+<A NAME="21"><FONT COLOR="#888888"><I>   21   </I></FONT></A><FONT COLOR="#117755"><I>/* Variable Definitions */</I></FONT>
+<A NAME="22"><FONT COLOR="#888888"><I>   22   </I></FONT></A>
+<A NAME="23"><FONT COLOR="#888888"><I>   23   </I></FONT></A><FONT COLOR="#117755"><I>/* Function Declarations */</I></FONT>
+<A NAME="24"><FONT COLOR="#888888"><I>   24   </I></FONT></A>
+<A NAME="25"><FONT COLOR="#888888"><I>   25   </I></FONT></A><FONT COLOR="#117755"><I>/* Function Definitions */</I></FONT>
+<A NAME="26"><FONT COLOR="#888888"><I>   26   </I></FONT></A>
+<A NAME="27"><FONT COLOR="#888888"><I>   27   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="28"><FONT COLOR="#888888"><I>   28   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="29"><FONT COLOR="#888888"><I>   29   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="30"><FONT COLOR="#888888"><I>   30   </I></FONT></A><FONT COLOR="#112266"><B>void</B></FONT> <A NAME="fcn_b_sum">b_sum</A>(<FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> x[18036], <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> y[1503])
+<A NAME="31"><FONT COLOR="#888888"><I>   31   </I></FONT></A><B>{</B>
+<A NAME="32"><FONT COLOR="#888888"><I>   32   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> iy;
+<A NAME="33"><FONT COLOR="#888888"><I>   33   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ixstart;
+<A NAME="34"><FONT COLOR="#888888"><I>   34   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> j;
+<A NAME="35"><FONT COLOR="#888888"><I>   35   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ix;
+<A NAME="36"><FONT COLOR="#888888"><I>   36   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> s;
+<A NAME="37"><FONT COLOR="#888888"><I>   37   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> k;
+<A NAME="38"><FONT COLOR="#888888"><I>   38   </I></FONT></A>  iy = -1;
+<A NAME="39"><FONT COLOR="#888888"><I>   39   </I></FONT></A>  ixstart = -1;
+<A NAME="40"><FONT COLOR="#888888"><I>   40   </I></FONT></A>  <FONT COLOR="#112266"><B>for</B></FONT> (j = 0; j &lt; 1503; j++) <B>{</B>
+<A NAME="41"><FONT COLOR="#888888"><I>   41   </I></FONT></A>    ixstart++;
+<A NAME="42"><FONT COLOR="#888888"><I>   42   </I></FONT></A>    ix = ixstart;
+<A NAME="43"><FONT COLOR="#888888"><I>   43   </I></FONT></A>    s = x[ixstart];
+<A NAME="44"><FONT COLOR="#888888"><I>   44   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (k = 0; k &lt; 11; k++) <B>{</B>
+<A NAME="45"><FONT COLOR="#888888"><I>   45   </I></FONT></A>      ix += 1503;
+<A NAME="46"><FONT COLOR="#888888"><I>   46   </I></FONT></A>      s += x[ix];
+<A NAME="47"><FONT COLOR="#888888"><I>   47   </I></FONT></A>    <B>}</B>
+<A NAME="48"><FONT COLOR="#888888"><I>   48   </I></FONT></A>
+<A NAME="49"><FONT COLOR="#888888"><I>   49   </I></FONT></A>    iy++;
+<A NAME="50"><FONT COLOR="#888888"><I>   50   </I></FONT></A>    y[iy] = s;
+<A NAME="51"><FONT COLOR="#888888"><I>   51   </I></FONT></A>  <B>}</B>
+<A NAME="52"><FONT COLOR="#888888"><I>   52   </I></FONT></A><B>}</B>
+<A NAME="53"><FONT COLOR="#888888"><I>   53   </I></FONT></A>
+<A NAME="54"><FONT COLOR="#888888"><I>   54   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="55"><FONT COLOR="#888888"><I>   55   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="56"><FONT COLOR="#888888"><I>   56   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="57"><FONT COLOR="#888888"><I>   57   </I></FONT></A><FONT COLOR="#112266"><B>void</B></FONT> <A NAME="fcn_c_sum">c_sum</A>(<FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> x[1503], <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> y[167])
+<A NAME="58"><FONT COLOR="#888888"><I>   58   </I></FONT></A><B>{</B>
+<A NAME="59"><FONT COLOR="#888888"><I>   59   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ix;
+<A NAME="60"><FONT COLOR="#888888"><I>   60   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> iy;
+<A NAME="61"><FONT COLOR="#888888"><I>   61   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> i;
+<A NAME="62"><FONT COLOR="#888888"><I>   62   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ixstart;
+<A NAME="63"><FONT COLOR="#888888"><I>   63   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> s;
+<A NAME="64"><FONT COLOR="#888888"><I>   64   </I></FONT></A>  ix = -1;
+<A NAME="65"><FONT COLOR="#888888"><I>   65   </I></FONT></A>  iy = -1;
+<A NAME="66"><FONT COLOR="#888888"><I>   66   </I></FONT></A>  <FONT COLOR="#112266"><B>for</B></FONT> (i = 0; i &lt; 167; i++) <B>{</B>
+<A NAME="67"><FONT COLOR="#888888"><I>   67   </I></FONT></A>    ixstart = ix + 1;
+<A NAME="68"><FONT COLOR="#888888"><I>   68   </I></FONT></A>    ix++;
+<A NAME="69"><FONT COLOR="#888888"><I>   69   </I></FONT></A>    s = x[ixstart];
+<A NAME="70"><FONT COLOR="#888888"><I>   70   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (ixstart = 0; ixstart &lt; 8; ixstart++) <B>{</B>
+<A NAME="71"><FONT COLOR="#888888"><I>   71   </I></FONT></A>      ix++;
+<A NAME="72"><FONT COLOR="#888888"><I>   72   </I></FONT></A>      s += x[ix];
+<A NAME="73"><FONT COLOR="#888888"><I>   73   </I></FONT></A>    <B>}</B>
+<A NAME="74"><FONT COLOR="#888888"><I>   74   </I></FONT></A>
+<A NAME="75"><FONT COLOR="#888888"><I>   75   </I></FONT></A>    iy++;
+<A NAME="76"><FONT COLOR="#888888"><I>   76   </I></FONT></A>    y[iy] = s;
+<A NAME="77"><FONT COLOR="#888888"><I>   77   </I></FONT></A>  <B>}</B>
+<A NAME="78"><FONT COLOR="#888888"><I>   78   </I></FONT></A><B>}</B>
+<A NAME="79"><FONT COLOR="#888888"><I>   79   </I></FONT></A>
+<A NAME="80"><FONT COLOR="#888888"><I>   80   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="81"><FONT COLOR="#888888"><I>   81   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="82"><FONT COLOR="#888888"><I>   82   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="83"><FONT COLOR="#888888"><I>   83   </I></FONT></A><FONT COLOR="#112266"><B>void</B></FONT> <A NAME="fcn_sum">sum</A>(<FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> x[108], <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> y[9])
+<A NAME="84"><FONT COLOR="#888888"><I>   84   </I></FONT></A><B>{</B>
+<A NAME="85"><FONT COLOR="#888888"><I>   85   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> iy;
+<A NAME="86"><FONT COLOR="#888888"><I>   86   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ixstart;
+<A NAME="87"><FONT COLOR="#888888"><I>   87   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> j;
+<A NAME="88"><FONT COLOR="#888888"><I>   88   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> ix;
+<A NAME="89"><FONT COLOR="#888888"><I>   89   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> s;
+<A NAME="90"><FONT COLOR="#888888"><I>   90   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> k;
+<A NAME="91"><FONT COLOR="#888888"><I>   91   </I></FONT></A>  iy = -1;
+<A NAME="92"><FONT COLOR="#888888"><I>   92   </I></FONT></A>  ixstart = -1;
+<A NAME="93"><FONT COLOR="#888888"><I>   93   </I></FONT></A>  <FONT COLOR="#112266"><B>for</B></FONT> (j = 0; j &lt; 9; j++) <B>{</B>
+<A NAME="94"><FONT COLOR="#888888"><I>   94   </I></FONT></A>    ixstart++;
+<A NAME="95"><FONT COLOR="#888888"><I>   95   </I></FONT></A>    ix = ixstart;
+<A NAME="96"><FONT COLOR="#888888"><I>   96   </I></FONT></A>    s = x[ixstart];
+<A NAME="97"><FONT COLOR="#888888"><I>   97   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (k = 0; k &lt; 11; k++) <B>{</B>
+<A NAME="98"><FONT COLOR="#888888"><I>   98   </I></FONT></A>      ix += 9;
+<A NAME="99"><FONT COLOR="#888888"><I>   99   </I></FONT></A>      s += x[ix];
+<A NAME="100"><FONT COLOR="#888888"><I>  100   </I></FONT></A>    <B>}</B>
+<A NAME="101"><FONT COLOR="#888888"><I>  101   </I></FONT></A>
+<A NAME="102"><FONT COLOR="#888888"><I>  102   </I></FONT></A>    iy++;
+<A NAME="103"><FONT COLOR="#888888"><I>  103   </I></FONT></A>    y[iy] = s;
+<A NAME="104"><FONT COLOR="#888888"><I>  104   </I></FONT></A>  <B>}</B>
+<A NAME="105"><FONT COLOR="#888888"><I>  105   </I></FONT></A><B>}</B>
+<A NAME="106"><FONT COLOR="#888888"><I>  106   </I></FONT></A>
+<A NAME="107"><FONT COLOR="#888888"><I>  107   </I></FONT></A><FONT COLOR="#117755"><I>/* End of code generation (sum.c) */</I></FONT>
+<A NAME="108"><FONT COLOR="#888888"><I>  108   </I></FONT></A></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

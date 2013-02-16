@@ -1,0 +1,8 @@
+Models speakers in TIDIGITS dataset as a GMM with MFCC features for inputs.
+Download the subset of TIDIGITS dataset from UPENN's LDC.
+Place it in the folder raw_8k
+
+Run run.sh to convert raw to wav using sox.
+./run.sh
+
+runSpeakerId.sh (follow directions within the .m file)

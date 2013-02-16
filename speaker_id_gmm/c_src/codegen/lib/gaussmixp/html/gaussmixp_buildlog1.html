@@ -1,0 +1,79 @@
+<html>
+<head>
+<div class="baselog">
+<link rel="stylesheet" href="file:////Applications/MATLAB_R2011b.app/toolbox/matlab/codetools/matlab-report-styles.css" type="text/css" />
+<style type="text/css" media="screen">
+div.treeview { white-space: nowrap; }
+.treeview img { border: 0px; vertical-align: middle; }
+.trigger { cursor: pointer; }
+.branch { display: none; margin-left: 22px; }
+span.lnnolink { cursor: pointer; color: blue; text-decoration: underline; padding: 1 }
+span.lnnonorm { color: grey; padding: 1 }
+span.textnorm { color: black; padding: 1 }
+span.textcmnt { color: green; padding: 1 }
+span.msglink { cursor: pointer; color: blue; text-decoration: underline }
+span.treelink { cursor: pointer; color: blue; text-decoration: underline }
+.error { color: red; }
+.fcflink { cursor: pointer; color: blue; text-decoration: underline }
+div.tooltip { visibility: hidden; position: fixed;
+  background-color: lightyellow; border: 1px solid black; }
+.td-linebottomrt-gray {border-bottom:1px solid #BBB; border-right:1px solid #BBB;background-color:#F0F0F0;}
+.td-linebottomrt-link {border-bottom:1px solid #BBB; border-right:1px solid #BBB;color:Blue;}
+</style>
+</div>
+<title>Code Generation Report For 'gaussmixp'</title>
+</head>
+<body>
+<div class="report-head">MATLAB Coder Build Log</div><p/>
+<div class="baselog">
+<div class="grayline"></div>
+<table cellpadding="4" cellspacing="1"><tr>
+<td align="left" class="td-linebottomrt-gray" colspan="2">Build Parameters</td>
+</tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Build directory</td>
+<td align="left" valign="top" class="td-linebottomrt-link"><a href="matlab: cd('/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp')">/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp</a></td></tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Make wrapper</td>
+<td align="left" valign="top" class="td-linebottomrt-link">/Applications/MATLAB_R2011b.app/bin/maci64/gmake -f gaussmixp_rtw.mk  GENERATE_REPORT=1 ADD_MDL_NAME_TO_GLOBALS=0</td></tr>
+<tr><td align="left" valign="top" class="td-linebottomrt">Make command</td>
+<td align="left" valign="top" class="td-linebottomrt-link">/Applications/MATLAB_R2011b.app/bin/maci64/gmake -f gaussmixp_rtw.mk  GENERATE_REPORT=1 ADD_MDL_NAME_TO_GLOBALS=0</td></tr>
+</table>
+<br/>
+<table border="1" cellpadding="4" cellspacing="1" width="100%">
+<tr><td align="left" class="td-linebottomrt-gray">Build Log</td></tr>
+<tr><td valign="top" class="td-script">
+<pre>
+<span class="td-line-number">    1   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "gaussmixp_data.c"</span>
+<span class="td-line-number">    2   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "gaussmixp.c"</span>
+<span class="td-line-number">    3   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "voicebox.c"</span>
+<span class="td-line-number">    4   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "power.c"</span>
+<span class="td-line-number">    5   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "log.c"</span>
+<span class="td-line-number">    6   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "sum.c"</span>
+<span class="td-line-number">    7   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "repmat.c"</span>
+<span class="td-line-number">    8   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "exp.c"</span>
+<span class="td-line-number">    9   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "gaussmixp_initialize.c"</span>
+<span class="td-line-number">   10   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "gaussmixp_terminate.c"</span>
+<span class="td-line-number">   11   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "rt_nonfinite.c"</span>
+<span class="td-line-number">   12   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "rtGetNaN.c"</span>
+<span class="td-line-number">   13   </span><span class="td-line-normal">gcc -arch x86_64 -c -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.5 -fno-common -no-cpp-precomp -fexceptions    -DUSE_RTMODEL -O0 -DMODEL=gaussmixp -DRT -DNUMST=1 -DTID01EQ=0 -DNCSTATES=0 -DUNIX -DMT=0 -DHAVESTDIO  -I. -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm -I/Applications/MATLAB_R2011b.app/simulink/include -I/Applications/MATLAB_R2011b.app/extern/include -I/Applications/MATLAB_R2011b.app/rtw/c/src -I/Applications/MATLAB_R2011b.app/rtw/c/src/ext_mode/common -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp -I/Users/cgshen/workspace/speaker_id/speaker_id_gmm/voicebox        "rtGetInf.c"</span>
+<span class="td-line-number">   14   </span><span class="td-line-normal">ar ruvs gaussmixp.a gaussmixp_data.o gaussmixp.o voicebox.o power.o log.o sum.o repmat.o exp.o gaussmixp_initialize.o gaussmixp_terminate.o rt_nonfinite.o rtGetNaN.o rtGetInf.o </span>
+<span class="td-line-number">   15   </span><span class="td-line-normal">ar: creating archive gaussmixp.a</span>
+<span class="td-line-number">   16   </span><span class="td-line-normal">a - gaussmixp_data.o</span>
+<span class="td-line-number">   17   </span><span class="td-line-normal">a - gaussmixp.o</span>
+<span class="td-line-number">   18   </span><span class="td-line-normal">a - voicebox.o</span>
+<span class="td-line-number">   19   </span><span class="td-line-normal">a - power.o</span>
+<span class="td-line-number">   20   </span><span class="td-line-normal">a - log.o</span>
+<span class="td-line-number">   21   </span><span class="td-line-normal">a - sum.o</span>
+<span class="td-line-number">   22   </span><span class="td-line-normal">a - repmat.o</span>
+<span class="td-line-number">   23   </span><span class="td-line-normal">a - exp.o</span>
+<span class="td-line-number">   24   </span><span class="td-line-normal">a - gaussmixp_initialize.o</span>
+<span class="td-line-number">   25   </span><span class="td-line-normal">a - gaussmixp_terminate.o</span>
+<span class="td-line-number">   26   </span><span class="td-line-normal">a - rt_nonfinite.o</span>
+<span class="td-line-number">   27   </span><span class="td-line-normal">a - rtGetNaN.o</span>
+<span class="td-line-number">   28   </span><span class="td-line-normal">a - rtGetInf.o</span>
+<span class="td-line-number">   29   </span><span class="td-line-normal">### Created gaussmixp.a</span>
+<span class="td-line-number">   30   </span><span class="td-line-normal">### Created library: gaussmixp.a</span>
+</pre>
+</td></tr></table>
+</div>
+</body>
+</html>

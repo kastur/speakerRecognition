@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8" />
+<TITLE>RTW Report - rtGetNaN.c </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);}">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/rtGetNaN.c" TARGET="rtwreport_document_frame">/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/rtGetNaN.c</A></H4>
+<PRE id="RTWcode">
+<A NAME="1"><FONT COLOR="#888888"><I>    1   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="2"><FONT COLOR="#888888"><I>    2   </I></FONT></A><FONT COLOR="#117755"><I> * rtGetNaN.c</I></FONT>
+<A NAME="3"><FONT COLOR="#888888"><I>    3   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="4"><FONT COLOR="#888888"><I>    4   </I></FONT></A><FONT COLOR="#117755"><I> * Code generation for function 'gaussmixp'</I></FONT>
+<A NAME="5"><FONT COLOR="#888888"><I>    5   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="6"><FONT COLOR="#888888"><I>    6   </I></FONT></A><FONT COLOR="#117755"><I> * C source code generated on: Wed Jan 30 22:03:32 2013</I></FONT>
+<A NAME="7"><FONT COLOR="#888888"><I>    7   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="8"><FONT COLOR="#888888"><I>    8   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="9"><FONT COLOR="#888888"><I>    9   </I></FONT></A>
+<A NAME="10"><FONT COLOR="#888888"><I>   10   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="11"><FONT COLOR="#888888"><I>   11   </I></FONT></A><FONT COLOR="#117755"><I> * Abstract:</I></FONT>
+<A NAME="12"><FONT COLOR="#888888"><I>   12   </I></FONT></A><FONT COLOR="#117755"><I> *       MATLAB for code generation function to initialize non-finite, NaN</I></FONT>
+<A NAME="13"><FONT COLOR="#888888"><I>   13   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="14"><FONT COLOR="#888888"><I>   14   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;rtGetNaN.h&quot;</FONT>
+<A NAME="15"><FONT COLOR="#888888"><I>   15   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>define</B></FONT> NumBitsPerChar	8U
+<A NAME="16"><FONT COLOR="#888888"><I>   16   </I></FONT></A>
+<A NAME="17"><FONT COLOR="#888888"><I>   17   </I></FONT></A><FONT COLOR="#117755"><I>/* Function: rtGetNaN ==================================================</I></FONT>
+<A NAME="18"><FONT COLOR="#888888"><I>   18   </I></FONT></A><FONT COLOR="#117755"><I> * Abstract:</I></FONT>
+<A NAME="19"><FONT COLOR="#888888"><I>   19   </I></FONT></A><FONT COLOR="#117755"><I> * Initialize rtNaN needed by the generated code.</I></FONT>
+<A NAME="20"><FONT COLOR="#888888"><I>   20   </I></FONT></A><FONT COLOR="#117755"><I> * NaN is initialized as non-signaling. Assumes IEEE.</I></FONT>
+<A NAME="21"><FONT COLOR="#888888"><I>   21   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="22"><FONT COLOR="#888888"><I>   22   </I></FONT></A><A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> <A NAME="fcn_rtGetNaN">rtGetNaN</A>(<FONT COLOR="#112266"><B>void</B></FONT>)
+<A NAME="23"><FONT COLOR="#888888"><I>   23   </I></FONT></A><B>{</B>
+<A NAME="24"><FONT COLOR="#888888"><I>   24   </I></FONT></A>  size_t bitsPerReal = <FONT COLOR="#112266"><B>sizeof</B></FONT>(<A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A>) * (NumBitsPerChar);
+<A NAME="25"><FONT COLOR="#888888"><I>   25   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> nan = 0.0;
+<A NAME="26"><FONT COLOR="#888888"><I>   26   </I></FONT></A>  <FONT COLOR="#112266"><B>if</B></FONT> (bitsPerReal == 32U) <B>{</B>
+<A NAME="27"><FONT COLOR="#888888"><I>   27   </I></FONT></A>    nan = <A HREF="rtGetNaN_c.html#fcn_rtGetNaNF" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_rtGetNaNF');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">rtGetNaNF</FONT></A>();
+<A NAME="28"><FONT COLOR="#888888"><I>   28   </I></FONT></A>  <B>}</B> <FONT COLOR="#112266"><B>else</B></FONT> <B>{</B>
+<A NAME="29"><FONT COLOR="#888888"><I>   29   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> one = 1U;
+<A NAME="30"><FONT COLOR="#888888"><I>   30   </I></FONT></A>  <FONT COLOR="#112266"><B>enum</B></FONT> <B>{</B>
+<A NAME="31"><FONT COLOR="#888888"><I>   31   </I></FONT></A>    LittleEndian,
+<A NAME="32"><FONT COLOR="#888888"><I>   32   </I></FONT></A>    BigEndian
+<A NAME="33"><FONT COLOR="#888888"><I>   33   </I></FONT></A>  <B>}</B> machByteOrder = (*((<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> *) &amp;one) == 1U) ? LittleEndian : BigEndian;
+<A NAME="34"><FONT COLOR="#888888"><I>   34   </I></FONT></A>  <FONT COLOR="#112266"><B>switch</B></FONT> (machByteOrder) <B>{</B>
+<A NAME="35"><FONT COLOR="#888888"><I>   35   </I></FONT></A>   <FONT COLOR="#112266"><B>case</B></FONT> LittleEndian:
+<A NAME="36"><FONT COLOR="#888888"><I>   36   </I></FONT></A>    <B>{</B>
+<A NAME="37"><FONT COLOR="#888888"><I>   37   </I></FONT></A>      <FONT COLOR="#112266"><B>union</B></FONT> <B>{</B>
+<A NAME="38"><FONT COLOR="#888888"><I>   38   </I></FONT></A>        <A HREF="rt_nonfinite_h.html#type_LittleEndianIEEEDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_LittleEndianIEEEDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">LittleEndianIEEEDouble</FONT></A> bitVal;
+<A NAME="39"><FONT COLOR="#888888"><I>   39   </I></FONT></A>        <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> fltVal;
+<A NAME="40"><FONT COLOR="#888888"><I>   40   </I></FONT></A>      <B>}</B> tmpVal;
+<A NAME="41"><FONT COLOR="#888888"><I>   41   </I></FONT></A>
+<A NAME="42"><FONT COLOR="#888888"><I>   42   </I></FONT></A>      tmpVal.bitVal.words.wordH = 0xFFF80000U;
+<A NAME="43"><FONT COLOR="#888888"><I>   43   </I></FONT></A>      tmpVal.bitVal.words.wordL = 0x00000000U;
+<A NAME="44"><FONT COLOR="#888888"><I>   44   </I></FONT></A>      nan = tmpVal.fltVal;
+<A NAME="45"><FONT COLOR="#888888"><I>   45   </I></FONT></A>      <FONT COLOR="#112266"><B>break</B></FONT>;
+<A NAME="46"><FONT COLOR="#888888"><I>   46   </I></FONT></A>    <B>}</B>
+<A NAME="47"><FONT COLOR="#888888"><I>   47   </I></FONT></A>
+<A NAME="48"><FONT COLOR="#888888"><I>   48   </I></FONT></A>   <FONT COLOR="#112266"><B>case</B></FONT> BigEndian:
+<A NAME="49"><FONT COLOR="#888888"><I>   49   </I></FONT></A>    <B>{</B>
+<A NAME="50"><FONT COLOR="#888888"><I>   50   </I></FONT></A>        <FONT COLOR="#112266"><B>union</B></FONT> <B>{</B>
+<A NAME="51"><FONT COLOR="#888888"><I>   51   </I></FONT></A>          <A HREF="rt_nonfinite_h.html#type_BigEndianIEEEDouble" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_BigEndianIEEEDouble');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">BigEndianIEEEDouble</FONT></A> bitVal;
+<A NAME="52"><FONT COLOR="#888888"><I>   52   </I></FONT></A>          <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> fltVal;
+<A NAME="53"><FONT COLOR="#888888"><I>   53   </I></FONT></A>        <B>}</B> tmpVal;
+<A NAME="54"><FONT COLOR="#888888"><I>   54   </I></FONT></A>
+<A NAME="55"><FONT COLOR="#888888"><I>   55   </I></FONT></A>        tmpVal.bitVal.words.wordH = 0x7FFFFFFFU;
+<A NAME="56"><FONT COLOR="#888888"><I>   56   </I></FONT></A>        tmpVal.bitVal.words.wordL = 0xFFFFFFFFU;
+<A NAME="57"><FONT COLOR="#888888"><I>   57   </I></FONT></A>        nan = tmpVal.fltVal;
+<A NAME="58"><FONT COLOR="#888888"><I>   58   </I></FONT></A>        <FONT COLOR="#112266"><B>break</B></FONT>;
+<A NAME="59"><FONT COLOR="#888888"><I>   59   </I></FONT></A>      <B>}</B>
+<A NAME="60"><FONT COLOR="#888888"><I>   60   </I></FONT></A>    <B>}</B>
+<A NAME="61"><FONT COLOR="#888888"><I>   61   </I></FONT></A>  <B>}</B>
+<A NAME="62"><FONT COLOR="#888888"><I>   62   </I></FONT></A>
+<A NAME="63"><FONT COLOR="#888888"><I>   63   </I></FONT></A>  <FONT COLOR="#112266"><B>return</B></FONT> nan;
+<A NAME="64"><FONT COLOR="#888888"><I>   64   </I></FONT></A><B>}</B>
+<A NAME="65"><FONT COLOR="#888888"><I>   65   </I></FONT></A>
+<A NAME="66"><FONT COLOR="#888888"><I>   66   </I></FONT></A><FONT COLOR="#117755"><I>/* Function: rtGetNaNF ==================================================</I></FONT>
+<A NAME="67"><FONT COLOR="#888888"><I>   67   </I></FONT></A><FONT COLOR="#117755"><I> * Abstract:</I></FONT>
+<A NAME="68"><FONT COLOR="#888888"><I>   68   </I></FONT></A><FONT COLOR="#117755"><I> * Initialize rtNaNF needed by the generated code.</I></FONT>
+<A NAME="69"><FONT COLOR="#888888"><I>   69   </I></FONT></A><FONT COLOR="#117755"><I> * NaN is initialized as non-signaling. Assumes IEEE.</I></FONT>
+<A NAME="70"><FONT COLOR="#888888"><I>   70   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="71"><FONT COLOR="#888888"><I>   71   </I></FONT></A><A HREF="rtwtypes_h.html#type_real32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real32_T</FONT></A> <A NAME="fcn_rtGetNaNF">rtGetNaNF</A>(<FONT COLOR="#112266"><B>void</B></FONT>)
+<A NAME="72"><FONT COLOR="#888888"><I>   72   </I></FONT></A><B>{</B>
+<A NAME="73"><FONT COLOR="#888888"><I>   73   </I></FONT></A>  <A HREF="rt_nonfinite_h.html#type_IEEESingle" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_IEEESingle');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">IEEESingle</FONT></A> nanF = <B>{</B> <B>{</B> 0 <B>}</B> <B>}</B>;
+<A NAME="74"><FONT COLOR="#888888"><I>   74   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_uint16_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint16_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint16_T</FONT></A> one = 1U;
+<A NAME="75"><FONT COLOR="#888888"><I>   75   </I></FONT></A>  <FONT COLOR="#112266"><B>enum</B></FONT> <B>{</B>
+<A NAME="76"><FONT COLOR="#888888"><I>   76   </I></FONT></A>    LittleEndian,
+<A NAME="77"><FONT COLOR="#888888"><I>   77   </I></FONT></A>    BigEndian
+<A NAME="78"><FONT COLOR="#888888"><I>   78   </I></FONT></A>  <B>}</B> machByteOrder = (*((<A HREF="rtwtypes_h.html#type_uint8_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_uint8_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">uint8_T</FONT></A> *) &amp;one) == 1U) ? LittleEndian : BigEndian;
+<A NAME="79"><FONT COLOR="#888888"><I>   79   </I></FONT></A>  <FONT COLOR="#112266"><B>switch</B></FONT> (machByteOrder) <B>{</B>
+<A NAME="80"><FONT COLOR="#888888"><I>   80   </I></FONT></A>   <FONT COLOR="#112266"><B>case</B></FONT> LittleEndian:
+<A NAME="81"><FONT COLOR="#888888"><I>   81   </I></FONT></A>    <B>{</B>
+<A NAME="82"><FONT COLOR="#888888"><I>   82   </I></FONT></A>      nanF.wordL.wordLuint = 0xFFC00000U;
+<A NAME="83"><FONT COLOR="#888888"><I>   83   </I></FONT></A>      <FONT COLOR="#112266"><B>break</B></FONT>;
+<A NAME="84"><FONT COLOR="#888888"><I>   84   </I></FONT></A>    <B>}</B>
+<A NAME="85"><FONT COLOR="#888888"><I>   85   </I></FONT></A>
+<A NAME="86"><FONT COLOR="#888888"><I>   86   </I></FONT></A>   <FONT COLOR="#112266"><B>case</B></FONT> BigEndian:
+<A NAME="87"><FONT COLOR="#888888"><I>   87   </I></FONT></A>    <B>{</B>
+<A NAME="88"><FONT COLOR="#888888"><I>   88   </I></FONT></A>      nanF.wordL.wordLuint = 0x7FFFFFFFU;
+<A NAME="89"><FONT COLOR="#888888"><I>   89   </I></FONT></A>      <FONT COLOR="#112266"><B>break</B></FONT>;
+<A NAME="90"><FONT COLOR="#888888"><I>   90   </I></FONT></A>    <B>}</B>
+<A NAME="91"><FONT COLOR="#888888"><I>   91   </I></FONT></A>  <B>}</B>
+<A NAME="92"><FONT COLOR="#888888"><I>   92   </I></FONT></A>
+<A NAME="93"><FONT COLOR="#888888"><I>   93   </I></FONT></A>  <FONT COLOR="#112266"><B>return</B></FONT> nanF.wordL.wordLreal;
+<A NAME="94"><FONT COLOR="#888888"><I>   94   </I></FONT></A><B>}</B>
+<A NAME="95"><FONT COLOR="#888888"><I>   95   </I></FONT></A>
+<A NAME="96"><FONT COLOR="#888888"><I>   96   </I></FONT></A><FONT COLOR="#117755"><I>/* End of code generation (rtGetNaN.c) */</I></FONT>
+<A NAME="97"><FONT COLOR="#888888"><I>   97   </I></FONT></A></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>

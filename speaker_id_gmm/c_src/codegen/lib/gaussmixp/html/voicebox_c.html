@@ -1,0 +1,425 @@
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8" />
+<TITLE>RTW Report - voicebox.c </TITLE>
+</HEAD>
+<BODY BGCOLOR="#eeeeee" TEXT="#1122aa" ONLOAD="if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window);}">
+<P>
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="6" WIDTH="100%" HEIGHT="100%"><TR><TD WIDTH="100%" VALIGN="top" BGCOLOR="#ffffff">
+<H4>File: <A HREF="file:///Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/voicebox.c" TARGET="rtwreport_document_frame">/Users/cgshen/workspace/speaker_id/speaker_id_gmm/codegen/lib/gaussmixp/voicebox.c</A></H4>
+<PRE id="RTWcode">
+<A NAME="1"><FONT COLOR="#888888"><I>    1   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="2"><FONT COLOR="#888888"><I>    2   </I></FONT></A><FONT COLOR="#117755"><I> * voicebox.c</I></FONT>
+<A NAME="3"><FONT COLOR="#888888"><I>    3   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="4"><FONT COLOR="#888888"><I>    4   </I></FONT></A><FONT COLOR="#117755"><I> * Code generation for function 'voicebox'</I></FONT>
+<A NAME="5"><FONT COLOR="#888888"><I>    5   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="6"><FONT COLOR="#888888"><I>    6   </I></FONT></A><FONT COLOR="#117755"><I> * C source code generated on: Wed Jan 30 22:03:32 2013</I></FONT>
+<A NAME="7"><FONT COLOR="#888888"><I>    7   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="8"><FONT COLOR="#888888"><I>    8   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="9"><FONT COLOR="#888888"><I>    9   </I></FONT></A>
+<A NAME="10"><FONT COLOR="#888888"><I>   10   </I></FONT></A><FONT COLOR="#117755"><I>/* Include files */</I></FONT>
+<A NAME="11"><FONT COLOR="#888888"><I>   11   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;rt_nonfinite.h&quot;</FONT>
+<A NAME="12"><FONT COLOR="#888888"><I>   12   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;gaussmixp.h&quot;</FONT>
+<A NAME="13"><FONT COLOR="#888888"><I>   13   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;voicebox.h&quot;</FONT>
+<A NAME="14"><FONT COLOR="#888888"><I>   14   </I></FONT></A><FONT COLOR="#992211">#</FONT><FONT COLOR="#992211"><B>include</B></FONT> <FONT COLOR="#992211">&quot;gaussmixp_data.h&quot;</FONT>
+<A NAME="15"><FONT COLOR="#888888"><I>   15   </I></FONT></A>
+<A NAME="16"><FONT COLOR="#888888"><I>   16   </I></FONT></A><FONT COLOR="#117755"><I>/* Type Definitions */</I></FONT>
+<A NAME="17"><FONT COLOR="#888888"><I>   17   </I></FONT></A><FONT COLOR="#112266"><B>typedef</B></FONT> <FONT COLOR="#112266"><B>struct</B></FONT> <B>{</B>
+<A NAME="18"><FONT COLOR="#888888"><I>   18   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> dir_temp[7];
+<A NAME="19"><FONT COLOR="#888888"><I>   19   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> dir_data[18];
+<A NAME="20"><FONT COLOR="#888888"><I>   20   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> shorten[18];
+<A NAME="21"><FONT COLOR="#888888"><I>   21   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> flac[15];
+<A NAME="22"><FONT COLOR="#888888"><I>   22   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> sfsbin[28];
+<A NAME="23"><FONT COLOR="#888888"><I>   23   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> sfssuffix[4];
+<A NAME="24"><FONT COLOR="#888888"><I>   24   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> memsize;
+<A NAME="25"><FONT COLOR="#888888"><I>   25   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_cpfrac;
+<A NAME="26"><FONT COLOR="#888888"><I>   26   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_cproj;
+<A NAME="27"><FONT COLOR="#888888"><I>   27   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_cspurt;
+<A NAME="28"><FONT COLOR="#888888"><I>   28   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_dopsp;
+<A NAME="29"><FONT COLOR="#888888"><I>   29   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_ewdly;
+<A NAME="30"><FONT COLOR="#888888"><I>   30   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_ewlen;
+<A NAME="31"><FONT COLOR="#888888"><I>   31   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_ewtaper;
+<A NAME="32"><FONT COLOR="#888888"><I>   32   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_fwlen;
+<A NAME="33"><FONT COLOR="#888888"><I>   33   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_fxmax;
+<A NAME="34"><FONT COLOR="#888888"><I>   34   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_fxmin;
+<A NAME="35"><FONT COLOR="#888888"><I>   35   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_fxminf;
+<A NAME="36"><FONT COLOR="#888888"><I>   36   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_gwlen;
+<A NAME="37"><FONT COLOR="#888888"><I>   37   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_lpcdur;
+<A NAME="38"><FONT COLOR="#888888"><I>   38   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_lpcn;
+<A NAME="39"><FONT COLOR="#888888"><I>   39   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_lpcnf;
+<A NAME="40"><FONT COLOR="#888888"><I>   40   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_lpcstep;
+<A NAME="41"><FONT COLOR="#888888"><I>   41   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_nbest;
+<A NAME="42"><FONT COLOR="#888888"><I>   42   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_preemph;
+<A NAME="43"><FONT COLOR="#888888"><I>   43   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_spitch;
+<A NAME="44"><FONT COLOR="#888888"><I>   44   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_wener;
+<A NAME="45"><FONT COLOR="#888888"><I>   45   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_wpitch;
+<A NAME="46"><FONT COLOR="#888888"><I>   46   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_wslope;
+<A NAME="47"><FONT COLOR="#888888"><I>   47   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_wxcorr;
+<A NAME="48"><FONT COLOR="#888888"><I>   48   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> dy_xwlen;
+<A NAME="49"><FONT COLOR="#888888"><I>   49   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_f0min;
+<A NAME="50"><FONT COLOR="#888888"><I>   50   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_f0max;
+<A NAME="51"><FONT COLOR="#888888"><I>   51   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_tframe;
+<A NAME="52"><FONT COLOR="#888888"><I>   52   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_tlpw;
+<A NAME="53"><FONT COLOR="#888888"><I>   53   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_tcorw;
+<A NAME="54"><FONT COLOR="#888888"><I>   54   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_candtr;
+<A NAME="55"><FONT COLOR="#888888"><I>   55   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_lagwt;
+<A NAME="56"><FONT COLOR="#888888"><I>   56   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_freqwt;
+<A NAME="57"><FONT COLOR="#888888"><I>   57   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_vtranc;
+<A NAME="58"><FONT COLOR="#888888"><I>   58   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_vtrac;
+<A NAME="59"><FONT COLOR="#888888"><I>   59   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_vtrsc;
+<A NAME="60"><FONT COLOR="#888888"><I>   60   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_vobias;
+<A NAME="61"><FONT COLOR="#888888"><I>   61   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_doublec;
+<A NAME="62"><FONT COLOR="#888888"><I>   62   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_absnoise;
+<A NAME="63"><FONT COLOR="#888888"><I>   63   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_relnoise;
+<A NAME="64"><FONT COLOR="#888888"><I>   64   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_signoise;
+<A NAME="65"><FONT COLOR="#888888"><I>   65   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_ncands;
+<A NAME="66"><FONT COLOR="#888888"><I>   66   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_trms;
+<A NAME="67"><FONT COLOR="#888888"><I>   67   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_dtrms;
+<A NAME="68"><FONT COLOR="#888888"><I>   68   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_preemph;
+<A NAME="69"><FONT COLOR="#888888"><I>   69   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> rapt_nfullag;
+<A NAME="70"><FONT COLOR="#888888"><I>   70   </I></FONT></A><B>}</B> <A NAME="type_struct_T">struct_T</A>;
+<A NAME="71"><FONT COLOR="#888888"><I>   71   </I></FONT></A>
+<A NAME="72"><FONT COLOR="#888888"><I>   72   </I></FONT></A><FONT COLOR="#117755"><I>/* Named Constants */</I></FONT>
+<A NAME="73"><FONT COLOR="#888888"><I>   73   </I></FONT></A>
+<A NAME="74"><FONT COLOR="#888888"><I>   74   </I></FONT></A><FONT COLOR="#117755"><I>/* Variable Declarations */</I></FONT>
+<A NAME="75"><FONT COLOR="#888888"><I>   75   </I></FONT></A>
+<A NAME="76"><FONT COLOR="#888888"><I>   76   </I></FONT></A><FONT COLOR="#117755"><I>/* Variable Definitions */</I></FONT>
+<A NAME="77"><FONT COLOR="#888888"><I>   77   </I></FONT></A><FONT COLOR="#112266"><B>static</B></FONT> <A HREF="voicebox_c.html#type_struct_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_struct_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">struct_T</FONT></A> <A NAME="var_PP">PP</A>;
+<A NAME="78"><FONT COLOR="#888888"><I>   78   </I></FONT></A>
+<A NAME="79"><FONT COLOR="#888888"><I>   79   </I></FONT></A><FONT COLOR="#117755"><I>/* Function Declarations */</I></FONT>
+<A NAME="80"><FONT COLOR="#888888"><I>   80   </I></FONT></A>
+<A NAME="81"><FONT COLOR="#888888"><I>   81   </I></FONT></A><FONT COLOR="#117755"><I>/* Function Definitions */</I></FONT>
+<A NAME="82"><FONT COLOR="#888888"><I>   82   </I></FONT></A>
+<A NAME="83"><FONT COLOR="#888888"><I>   83   </I></FONT></A><FONT COLOR="#117755"><I>/*</I></FONT>
+<A NAME="84"><FONT COLOR="#888888"><I>   84   </I></FONT></A><FONT COLOR="#117755"><I> * function y=voicebox(f,v)</I></FONT>
+<A NAME="85"><FONT COLOR="#888888"><I>   85   </I></FONT></A><FONT COLOR="#117755"><I> * VOICEBOX  set global parameters for Voicebox functions Y=(FIELD,VAL)</I></FONT>
+<A NAME="86"><FONT COLOR="#888888"><I>   86   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="87"><FONT COLOR="#888888"><I>   87   </I></FONT></A><FONT COLOR="#117755"><I> *   Inputs:  F   is a field name</I></FONT>
+<A NAME="88"><FONT COLOR="#888888"><I>   88   </I></FONT></A><FONT COLOR="#117755"><I> *            V   is a new value for the field</I></FONT>
+<A NAME="89"><FONT COLOR="#888888"><I>   89   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="90"><FONT COLOR="#888888"><I>   90   </I></FONT></A><FONT COLOR="#117755"><I> *  Outputs:  Y   is set equal to the structure of parameters if the</I></FONT>
+<A NAME="91"><FONT COLOR="#888888"><I>   91   </I></FONT></A><FONT COLOR="#117755"><I> *                f and v inputs are both present or both absent. If only</I></FONT>
+<A NAME="92"><FONT COLOR="#888888"><I>   92   </I></FONT></A><FONT COLOR="#117755"><I> *                input f is specified, then y is set to the value of the</I></FONT>
+<A NAME="93"><FONT COLOR="#888888"><I>   93   </I></FONT></A><FONT COLOR="#117755"><I> *                corresponding field or null if it doesn't exist.</I></FONT>
+<A NAME="94"><FONT COLOR="#888888"><I>   94   </I></FONT></A><FONT COLOR="#117755"><I> *</I></FONT>
+<A NAME="95"><FONT COLOR="#888888"><I>   95   </I></FONT></A><FONT COLOR="#117755"><I> *  This routine contains default values for constants that are used by</I></FONT>
+<A NAME="96"><FONT COLOR="#888888"><I>   96   </I></FONT></A><FONT COLOR="#117755"><I> *  other functions in the VOICEBOX toolbox. Values in the first section below,</I></FONT>
+<A NAME="97"><FONT COLOR="#888888"><I>   97   </I></FONT></A><FONT COLOR="#117755"><I> *  entitled "System-dependent directory paths" should be set as follows:</I></FONT>
+<A NAME="98"><FONT COLOR="#888888"><I>   98   </I></FONT></A><FONT COLOR="#117755"><I> *     PP.dir_temp     directory for storing temporary files</I></FONT>
+<A NAME="99"><FONT COLOR="#888888"><I>   99   </I></FONT></A><FONT COLOR="#117755"><I> *     PP.dir_data     default directory to preappend to speech data file names</I></FONT>
+<A NAME="100"><FONT COLOR="#888888"><I>  100   </I></FONT></A><FONT COLOR="#117755"><I> *                     when the "d" option is specified in READWAV etc.</I></FONT>
+<A NAME="101"><FONT COLOR="#888888"><I>  101   </I></FONT></A><FONT COLOR="#117755"><I> *     PP.shorten      location of SHORTEN executable. SHORTEN is a proprietary file compression</I></FONT>
+<A NAME="102"><FONT COLOR="#888888"><I>  102   </I></FONT></A><FONT COLOR="#117755"><I> *                     algorithm that is used for some SPHERE-format files. READSPH</I></FONT>
+<A NAME="103"><FONT COLOR="#888888"><I>  103   </I></FONT></A><FONT COLOR="#117755"><I> *                     will try to call an external decoder if it is asked to</I></FONT>
+<A NAME="104"><FONT COLOR="#888888"><I>  104   </I></FONT></A><FONT COLOR="#117755"><I> *                     read such a compressed file.</I></FONT>
+<A NAME="105"><FONT COLOR="#888888"><I>  105   </I></FONT></A><FONT COLOR="#117755"><I> *     PP.sfsbin       location of Speech Filing Sysytem binaries. If the "c" option</I></FONT>
+<A NAME="106"><FONT COLOR="#888888"><I>  106   </I></FONT></A><FONT COLOR="#117755"><I> *                     is given to READSFS, it will try to create a requested item</I></FONT>
+<A NAME="107"><FONT COLOR="#888888"><I>  107   </I></FONT></A><FONT COLOR="#117755"><I> *                     if it is not present in the SFS file. This parameter tells it</I></FONT>
+<A NAME="108"><FONT COLOR="#888888"><I>  108   </I></FONT></A><FONT COLOR="#117755"><I> *                     where to find the SFS executables.</I></FONT>
+<A NAME="109"><FONT COLOR="#888888"><I>  109   </I></FONT></A><FONT COLOR="#117755"><I> *     PP.sfssuffix    suffix for Speech Filing Sysytem binaries. READSFS uses this paremeter</I></FONT>
+<A NAME="110"><FONT COLOR="#888888"><I>  110   </I></FONT></A><FONT COLOR="#117755"><I> *                     to create the name of an SFS executable (see PP.sfsbin above).</I></FONT>
+<A NAME="111"><FONT COLOR="#888888"><I>  111   </I></FONT></A><FONT COLOR="#117755"><I> *  Other values defined in this routine are the defaults for specific algorithm constants.</I></FONT>
+<A NAME="112"><FONT COLOR="#888888"><I>  112   </I></FONT></A><FONT COLOR="#117755"><I> *  If you want to change these, please refer to the individual routines for a fuller description.</I></FONT>
+<A NAME="113"><FONT COLOR="#888888"><I>  113   </I></FONT></A><FONT COLOR="#117755"><I> */</I></FONT>
+<A NAME="114"><FONT COLOR="#888888"><I>  114   </I></FONT></A><A HREF="rtwtypes_h.html#type_real_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_real_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">real_T</FONT></A> <A NAME="fcn_voicebox">voicebox</A>(<FONT COLOR="#112266"><B>void</B></FONT>)
+<A NAME="115"><FONT COLOR="#888888"><I>  115   </I></FONT></A><B>{</B>
+<A NAME="116"><FONT COLOR="#888888"><I>  116   </I></FONT></A>  <A HREF="rtwtypes_h.html#type_int32_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_int32_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">int32_T</FONT></A> i0;
+<A NAME="117"><FONT COLOR="#888888"><I>  117   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv0[7] = <B>{</B> <FONT COLOR="#1122ff">'F'</FONT>, <FONT COLOR="#1122ff">':'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'T'</FONT>, <FONT COLOR="#1122ff">'E'</FONT>, <FONT COLOR="#1122ff">'M'</FONT>, <FONT COLOR="#1122ff">'P'</FONT> <B>}</B>;
+<A NAME="118"><FONT COLOR="#888888"><I>  118   </I></FONT></A>
+<A NAME="119"><FONT COLOR="#888888"><I>  119   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv1[18] = <B>{</B> <FONT COLOR="#1122ff">'E'</FONT>, <FONT COLOR="#1122ff">':'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'d'</FONT>, <FONT COLOR="#1122ff">'m'</FONT>, <FONT COLOR="#1122ff">'b'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'d'</FONT>, <FONT COLOR="#1122ff">'a'</FONT>,
+<A NAME="120"><FONT COLOR="#888888"><I>  120   </I></FONT></A>    <FONT COLOR="#1122ff">'t'</FONT>, <FONT COLOR="#1122ff">'a'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'s'</FONT>, <FONT COLOR="#1122ff">'p'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'c'</FONT>, <FONT COLOR="#1122ff">'h'</FONT> <B>}</B>;
+<A NAME="121"><FONT COLOR="#888888"><I>  121   </I></FONT></A>
+<A NAME="122"><FONT COLOR="#888888"><I>  122   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv2[18] = <B>{</B> <FONT COLOR="#1122ff">'C'</FONT>, <FONT COLOR="#1122ff">':'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'b'</FONT>, <FONT COLOR="#1122ff">'i'</FONT>, <FONT COLOR="#1122ff">'n'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'s'</FONT>, <FONT COLOR="#1122ff">'h'</FONT>,
+<A NAME="123"><FONT COLOR="#888888"><I>  123   </I></FONT></A>    <FONT COLOR="#1122ff">'o'</FONT>, <FONT COLOR="#1122ff">'r'</FONT>, <FONT COLOR="#1122ff">'t'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'n'</FONT>, <FONT COLOR="#1122ff">'.'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'x'</FONT>, <FONT COLOR="#1122ff">'e'</FONT> <B>}</B>;
+<A NAME="124"><FONT COLOR="#888888"><I>  124   </I></FONT></A>
+<A NAME="125"><FONT COLOR="#888888"><I>  125   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv3[15] = <B>{</B> <FONT COLOR="#1122ff">'C'</FONT>, <FONT COLOR="#1122ff">':'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'b'</FONT>, <FONT COLOR="#1122ff">'i'</FONT>, <FONT COLOR="#1122ff">'n'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'f'</FONT>, <FONT COLOR="#1122ff">'l'</FONT>,
+<A NAME="126"><FONT COLOR="#888888"><I>  126   </I></FONT></A>    <FONT COLOR="#1122ff">'a'</FONT>, <FONT COLOR="#1122ff">'c'</FONT>, <FONT COLOR="#1122ff">'.'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'x'</FONT>, <FONT COLOR="#1122ff">'e'</FONT> <B>}</B>;
+<A NAME="127"><FONT COLOR="#888888"><I>  127   </I></FONT></A>
+<A NAME="128"><FONT COLOR="#888888"><I>  128   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv4[28] = <B>{</B> <FONT COLOR="#1122ff">'F'</FONT>, <FONT COLOR="#1122ff">':'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'P'</FONT>, <FONT COLOR="#1122ff">'r'</FONT>, <FONT COLOR="#1122ff">'o'</FONT>, <FONT COLOR="#1122ff">'g'</FONT>, <FONT COLOR="#1122ff">'r'</FONT>, <FONT COLOR="#1122ff">'a'</FONT>,
+<A NAME="129"><FONT COLOR="#888888"><I>  129   </I></FONT></A>    <FONT COLOR="#1122ff">'m'</FONT>, <FONT COLOR="#1122ff">' '</FONT>, <FONT COLOR="#1122ff">'F'</FONT>, <FONT COLOR="#1122ff">'i'</FONT>, <FONT COLOR="#1122ff">'l'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'s'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'S'</FONT>, <FONT COLOR="#1122ff">'F'</FONT>, <FONT COLOR="#1122ff">'S'</FONT>, <FONT COLOR="#1122ff">'\\'</FONT>, <FONT COLOR="#1122ff">'P'</FONT>, <FONT COLOR="#1122ff">'r'</FONT>, <FONT COLOR="#1122ff">'o'</FONT>,
+<A NAME="130"><FONT COLOR="#888888"><I>  130   </I></FONT></A>    <FONT COLOR="#1122ff">'g'</FONT>, <FONT COLOR="#1122ff">'r'</FONT>, <FONT COLOR="#1122ff">'a'</FONT>, <FONT COLOR="#1122ff">'m'</FONT> <B>}</B>;
+<A NAME="131"><FONT COLOR="#888888"><I>  131   </I></FONT></A>
+<A NAME="132"><FONT COLOR="#888888"><I>  132   </I></FONT></A>  <FONT COLOR="#112266"><B>static</B></FONT> <FONT COLOR="#112266"><B>const</B></FONT> <A HREF="rtwtypes_h.html#type_char_T" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_char_T');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">char_T</FONT></A> cv5[4] = <B>{</B> <FONT COLOR="#1122ff">'.'</FONT>, <FONT COLOR="#1122ff">'e'</FONT>, <FONT COLOR="#1122ff">'x'</FONT>, <FONT COLOR="#1122ff">'e'</FONT> <B>}</B>;
+<A NAME="133"><FONT COLOR="#888888"><I>  133   </I></FONT></A>
+<A NAME="134"><FONT COLOR="#888888"><I>  134   </I></FONT></A>  <FONT COLOR="#117755"><I>/*  Bugs/Suggestions */</I></FONT>
+<A NAME="135"><FONT COLOR="#888888"><I>  135   </I></FONT></A>  <FONT COLOR="#117755"><I>/*     (1)  Could allow a * at the end of F to act as a wildcard and return/print a part structure */</I></FONT>
+<A NAME="136"><FONT COLOR="#888888"><I>  136   </I></FONT></A>  <FONT COLOR="#117755"><I>/*       Copyright (C) Mike Brookes 2003 */</I></FONT>
+<A NAME="137"><FONT COLOR="#888888"><I>  137   </I></FONT></A>  <FONT COLOR="#117755"><I>/*       Version: $Id: voicebox.m,v 1.17 2011/07/28 06:48:45 dmb Exp $ */</I></FONT>
+<A NAME="138"><FONT COLOR="#888888"><I>  138   </I></FONT></A>  <FONT COLOR="#117755"><I>/*  */</I></FONT>
+<A NAME="139"><FONT COLOR="#888888"><I>  139   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    VOICEBOX is a MATLAB toolbox for speech processing. */</I></FONT>
+<A NAME="140"><FONT COLOR="#888888"><I>  140   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    Home page: http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html */</I></FONT>
+<A NAME="141"><FONT COLOR="#888888"><I>  141   </I></FONT></A>  <FONT COLOR="#117755"><I>/*  */</I></FONT>
+<A NAME="142"><FONT COLOR="#888888"><I>  142   </I></FONT></A>  <FONT COLOR="#117755"><I>/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */</I></FONT>
+<A NAME="143"><FONT COLOR="#888888"><I>  143   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    This program is free software; you can redistribute it and/or modify */</I></FONT>
+<A NAME="144"><FONT COLOR="#888888"><I>  144   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    it under the terms of the GNU General Public License as published by */</I></FONT>
+<A NAME="145"><FONT COLOR="#888888"><I>  145   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    the Free Software Foundation; either version 2 of the License, or */</I></FONT>
+<A NAME="146"><FONT COLOR="#888888"><I>  146   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    (at your option) any later version. */</I></FONT>
+<A NAME="147"><FONT COLOR="#888888"><I>  147   </I></FONT></A>  <FONT COLOR="#117755"><I>/*  */</I></FONT>
+<A NAME="148"><FONT COLOR="#888888"><I>  148   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    This program is distributed in the hope that it will be useful, */</I></FONT>
+<A NAME="149"><FONT COLOR="#888888"><I>  149   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    but WITHOUT ANY WARRANTY; without even the implied warranty of */</I></FONT>
+<A NAME="150"><FONT COLOR="#888888"><I>  150   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the */</I></FONT>
+<A NAME="151"><FONT COLOR="#888888"><I>  151   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    GNU General Public License for more details. */</I></FONT>
+<A NAME="152"><FONT COLOR="#888888"><I>  152   </I></FONT></A>  <FONT COLOR="#117755"><I>/*  */</I></FONT>
+<A NAME="153"><FONT COLOR="#888888"><I>  153   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    You can obtain a copy of the GNU General Public License from */</I></FONT>
+<A NAME="154"><FONT COLOR="#888888"><I>  154   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    http://www.gnu.org/copyleft/gpl.html or by writing to */</I></FONT>
+<A NAME="155"><FONT COLOR="#888888"><I>  155   </I></FONT></A>  <FONT COLOR="#117755"><I>/*    Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA. */</I></FONT>
+<A NAME="156"><FONT COLOR="#888888"><I>  156   </I></FONT></A>  <FONT COLOR="#117755"><I>/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */</I></FONT>
+<A NAME="157"><FONT COLOR="#888888"><I>  157   </I></FONT></A>  <FONT COLOR="#117755"><I>/* <span><a href="3,57">'voicebox:57'</a></span> if isempty(PP) */</I></FONT>
+<A NAME="158"><FONT COLOR="#888888"><I>  158   </I></FONT></A>  <FONT COLOR="#112266"><B>if</B></FONT> (!<A HREF="gaussmixp_data_c.html#var_PP_not_empty" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP_not_empty');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP_not_empty</FONT></A>) <B>{</B>
+<A NAME="159"><FONT COLOR="#888888"><I>  159   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  System-dependent directory paths and constants */</I></FONT>
+<A NAME="160"><FONT COLOR="#888888"><I>  160   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,61">'voicebox:61'</a></span> PP.dir_temp='F:\TEMP'; */</I></FONT>
+<A NAME="161"><FONT COLOR="#888888"><I>  161   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (i0 = 0; i0 &lt; 7; i0++) <B>{</B>
+<A NAME="162"><FONT COLOR="#888888"><I>  162   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dir_temp[i0] = cv0[i0];
+<A NAME="163"><FONT COLOR="#888888"><I>  163   </I></FONT></A>    <B>}</B>
+<A NAME="164"><FONT COLOR="#888888"><I>  164   </I></FONT></A>
+<A NAME="165"><FONT COLOR="#888888"><I>  165   </I></FONT></A>    <A HREF="gaussmixp_data_c.html#var_PP_not_empty" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP_not_empty');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP_not_empty</FONT></A> = TRUE;
+<A NAME="166"><FONT COLOR="#888888"><I>  166   </I></FONT></A>
+<A NAME="167"><FONT COLOR="#888888"><I>  167   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  directory for storing temporary files */</I></FONT>
+<A NAME="168"><FONT COLOR="#888888"><I>  168   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,62">'voicebox:62'</a></span> PP.dir_data='E:\dmb\data\speech'; */</I></FONT>
+<A NAME="169"><FONT COLOR="#888888"><I>  169   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (i0 = 0; i0 &lt; 18; i0++) <B>{</B>
+<A NAME="170"><FONT COLOR="#888888"><I>  170   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dir_data[i0] = cv1[i0];
+<A NAME="171"><FONT COLOR="#888888"><I>  171   </I></FONT></A>
+<A NAME="172"><FONT COLOR="#888888"><I>  172   </I></FONT></A>      <FONT COLOR="#117755"><I>/*  default directory to preappend to speech data file names */</I></FONT>
+<A NAME="173"><FONT COLOR="#888888"><I>  173   </I></FONT></A>      <FONT COLOR="#117755"><I>/* <span><a href="3,63">'voicebox:63'</a></span> PP.shorten='C:\bin\shorten.exe'; */</I></FONT>
+<A NAME="174"><FONT COLOR="#888888"><I>  174   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.shorten[i0] = cv2[i0];
+<A NAME="175"><FONT COLOR="#888888"><I>  175   </I></FONT></A>    <B>}</B>
+<A NAME="176"><FONT COLOR="#888888"><I>  176   </I></FONT></A>
+<A NAME="177"><FONT COLOR="#888888"><I>  177   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  location of shorten executable */</I></FONT>
+<A NAME="178"><FONT COLOR="#888888"><I>  178   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,64">'voicebox:64'</a></span> PP.flac='C:\bin\flac.exe'; */</I></FONT>
+<A NAME="179"><FONT COLOR="#888888"><I>  179   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (i0 = 0; i0 &lt; 15; i0++) <B>{</B>
+<A NAME="180"><FONT COLOR="#888888"><I>  180   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.flac[i0] = cv3[i0];
+<A NAME="181"><FONT COLOR="#888888"><I>  181   </I></FONT></A>    <B>}</B>
+<A NAME="182"><FONT COLOR="#888888"><I>  182   </I></FONT></A>
+<A NAME="183"><FONT COLOR="#888888"><I>  183   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  location of flac executable */</I></FONT>
+<A NAME="184"><FONT COLOR="#888888"><I>  184   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,65">'voicebox:65'</a></span> PP.sfsbin='F:\Program Files\SFS\Program'; */</I></FONT>
+<A NAME="185"><FONT COLOR="#888888"><I>  185   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (i0 = 0; i0 &lt; 28; i0++) <B>{</B>
+<A NAME="186"><FONT COLOR="#888888"><I>  186   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.sfsbin[i0] = cv4[i0];
+<A NAME="187"><FONT COLOR="#888888"><I>  187   </I></FONT></A>    <B>}</B>
+<A NAME="188"><FONT COLOR="#888888"><I>  188   </I></FONT></A>
+<A NAME="189"><FONT COLOR="#888888"><I>  189   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  location of Speech Filing Sysytem binaries */</I></FONT>
+<A NAME="190"><FONT COLOR="#888888"><I>  190   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,66">'voicebox:66'</a></span> PP.sfssuffix='.exe'; */</I></FONT>
+<A NAME="191"><FONT COLOR="#888888"><I>  191   </I></FONT></A>    <FONT COLOR="#112266"><B>for</B></FONT> (i0 = 0; i0 &lt; 4; i0++) <B>{</B>
+<A NAME="192"><FONT COLOR="#888888"><I>  192   </I></FONT></A>      <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.sfssuffix[i0] = cv5[i0];
+<A NAME="193"><FONT COLOR="#888888"><I>  193   </I></FONT></A>    <B>}</B>
+<A NAME="194"><FONT COLOR="#888888"><I>  194   </I></FONT></A>
+<A NAME="195"><FONT COLOR="#888888"><I>  195   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  suffix for Speech Filing Sysytem binaries */</I></FONT>
+<A NAME="196"><FONT COLOR="#888888"><I>  196   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,67">'voicebox:67'</a></span> PP.memsize=50e6; */</I></FONT>
+<A NAME="197"><FONT COLOR="#888888"><I>  197   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.memsize = 5.0E+7;
+<A NAME="198"><FONT COLOR="#888888"><I>  198   </I></FONT></A>
+<A NAME="199"><FONT COLOR="#888888"><I>  199   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  Maximum amount of temporary memory to use (Bytes) */</I></FONT>
+<A NAME="200"><FONT COLOR="#888888"><I>  200   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  DYPSA glottal closure identifier */</I></FONT>
+<A NAME="201"><FONT COLOR="#888888"><I>  201   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,71">'voicebox:71'</a></span> PP.dy_cpfrac=0.3; */</I></FONT>
+<A NAME="202"><FONT COLOR="#888888"><I>  202   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_cpfrac = 0.3;
+<A NAME="203"><FONT COLOR="#888888"><I>  203   </I></FONT></A>
+<A NAME="204"><FONT COLOR="#888888"><I>  204   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  presumed closed phase fraction of larynx cycle */</I></FONT>
+<A NAME="205"><FONT COLOR="#888888"><I>  205   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,72">'voicebox:72'</a></span> PP.dy_cproj=0.2; */</I></FONT>
+<A NAME="206"><FONT COLOR="#888888"><I>  206   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_cproj = 0.2;
+<A NAME="207"><FONT COLOR="#888888"><I>  207   </I></FONT></A>
+<A NAME="208"><FONT COLOR="#888888"><I>  208   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  cost of projected candidate */</I></FONT>
+<A NAME="209"><FONT COLOR="#888888"><I>  209   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,73">'voicebox:73'</a></span> PP.dy_cspurt=-0.45; */</I></FONT>
+<A NAME="210"><FONT COLOR="#888888"><I>  210   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_cspurt = -0.45;
+<A NAME="211"><FONT COLOR="#888888"><I>  211   </I></FONT></A>
+<A NAME="212"><FONT COLOR="#888888"><I>  212   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  cost of a talkspurt */</I></FONT>
+<A NAME="213"><FONT COLOR="#888888"><I>  213   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,74">'voicebox:74'</a></span> PP.dy_dopsp=1; */</I></FONT>
+<A NAME="214"><FONT COLOR="#888888"><I>  214   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_dopsp = 1.0;
+<A NAME="215"><FONT COLOR="#888888"><I>  215   </I></FONT></A>
+<A NAME="216"><FONT COLOR="#888888"><I>  216   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  Use phase slope projection (1) or not (0)? */</I></FONT>
+<A NAME="217"><FONT COLOR="#888888"><I>  217   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,75">'voicebox:75'</a></span> PP.dy_ewdly=0.0008; */</I></FONT>
+<A NAME="218"><FONT COLOR="#888888"><I>  218   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_ewdly = 0.0008;
+<A NAME="219"><FONT COLOR="#888888"><I>  219   </I></FONT></A>
+<A NAME="220"><FONT COLOR="#888888"><I>  220   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  window delay for energy cost function term [~ energy peak delay from closure] (sec) */</I></FONT>
+<A NAME="221"><FONT COLOR="#888888"><I>  221   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,76">'voicebox:76'</a></span> PP.dy_ewlen=0.003; */</I></FONT>
+<A NAME="222"><FONT COLOR="#888888"><I>  222   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_ewlen = 0.003;
+<A NAME="223"><FONT COLOR="#888888"><I>  223   </I></FONT></A>
+<A NAME="224"><FONT COLOR="#888888"><I>  224   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  window length for energy cost function term (sec) */</I></FONT>
+<A NAME="225"><FONT COLOR="#888888"><I>  225   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,77">'voicebox:77'</a></span> PP.dy_ewtaper=0.001; */</I></FONT>
+<A NAME="226"><FONT COLOR="#888888"><I>  226   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_ewtaper = 0.001;
+<A NAME="227"><FONT COLOR="#888888"><I>  227   </I></FONT></A>
+<A NAME="228"><FONT COLOR="#888888"><I>  228   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  taper length for energy cost function window (sec) */</I></FONT>
+<A NAME="229"><FONT COLOR="#888888"><I>  229   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,78">'voicebox:78'</a></span> PP.dy_fwlen=0.00045; */</I></FONT>
+<A NAME="230"><FONT COLOR="#888888"><I>  230   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_fwlen = 0.00045;
+<A NAME="231"><FONT COLOR="#888888"><I>  231   </I></FONT></A>
+<A NAME="232"><FONT COLOR="#888888"><I>  232   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  window length used to smooth group delay (sec) */</I></FONT>
+<A NAME="233"><FONT COLOR="#888888"><I>  233   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,79">'voicebox:79'</a></span> PP.dy_fxmax=500; */</I></FONT>
+<A NAME="234"><FONT COLOR="#888888"><I>  234   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_fxmax = 500.0;
+<A NAME="235"><FONT COLOR="#888888"><I>  235   </I></FONT></A>
+<A NAME="236"><FONT COLOR="#888888"><I>  236   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  max larynx frequency (Hz) */</I></FONT>
+<A NAME="237"><FONT COLOR="#888888"><I>  237   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,80">'voicebox:80'</a></span> PP.dy_fxmin=50; */</I></FONT>
+<A NAME="238"><FONT COLOR="#888888"><I>  238   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_fxmin = 50.0;
+<A NAME="239"><FONT COLOR="#888888"><I>  239   </I></FONT></A>
+<A NAME="240"><FONT COLOR="#888888"><I>  240   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  min larynx frequency (Hz) */</I></FONT>
+<A NAME="241"><FONT COLOR="#888888"><I>  241   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,81">'voicebox:81'</a></span> PP.dy_fxminf=60; */</I></FONT>
+<A NAME="242"><FONT COLOR="#888888"><I>  242   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_fxminf = 60.0;
+<A NAME="243"><FONT COLOR="#888888"><I>  243   </I></FONT></A>
+<A NAME="244"><FONT COLOR="#888888"><I>  244   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  min larynx frequency (Hz) [used for Frobenius norm only] */</I></FONT>
+<A NAME="245"><FONT COLOR="#888888"><I>  245   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,82">'voicebox:82'</a></span> PP.dy_gwlen=0.0030; */</I></FONT>
+<A NAME="246"><FONT COLOR="#888888"><I>  246   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_gwlen = 0.003;
+<A NAME="247"><FONT COLOR="#888888"><I>  247   </I></FONT></A>
+<A NAME="248"><FONT COLOR="#888888"><I>  248   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  group delay evaluation window length (sec) */</I></FONT>
+<A NAME="249"><FONT COLOR="#888888"><I>  249   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,83">'voicebox:83'</a></span> PP.dy_lpcdur=0.020; */</I></FONT>
+<A NAME="250"><FONT COLOR="#888888"><I>  250   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_lpcdur = 0.02;
+<A NAME="251"><FONT COLOR="#888888"><I>  251   </I></FONT></A>
+<A NAME="252"><FONT COLOR="#888888"><I>  252   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  lpc analysis frame length (sec) */</I></FONT>
+<A NAME="253"><FONT COLOR="#888888"><I>  253   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,84">'voicebox:84'</a></span> PP.dy_lpcn=2; */</I></FONT>
+<A NAME="254"><FONT COLOR="#888888"><I>  254   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_lpcn = 2.0;
+<A NAME="255"><FONT COLOR="#888888"><I>  255   </I></FONT></A>
+<A NAME="256"><FONT COLOR="#888888"><I>  256   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  lpc additional poles */</I></FONT>
+<A NAME="257"><FONT COLOR="#888888"><I>  257   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,85">'voicebox:85'</a></span> PP.dy_lpcnf=0.001; */</I></FONT>
+<A NAME="258"><FONT COLOR="#888888"><I>  258   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_lpcnf = 0.001;
+<A NAME="259"><FONT COLOR="#888888"><I>  259   </I></FONT></A>
+<A NAME="260"><FONT COLOR="#888888"><I>  260   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  lpc poles per Hz (1/Hz) */</I></FONT>
+<A NAME="261"><FONT COLOR="#888888"><I>  261   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,86">'voicebox:86'</a></span> PP.dy_lpcstep=0.010; */</I></FONT>
+<A NAME="262"><FONT COLOR="#888888"><I>  262   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_lpcstep = 0.01;
+<A NAME="263"><FONT COLOR="#888888"><I>  263   </I></FONT></A>
+<A NAME="264"><FONT COLOR="#888888"><I>  264   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  lpc analysis step (sec) */</I></FONT>
+<A NAME="265"><FONT COLOR="#888888"><I>  265   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,87">'voicebox:87'</a></span> PP.dy_nbest=5; */</I></FONT>
+<A NAME="266"><FONT COLOR="#888888"><I>  266   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_nbest = 5.0;
+<A NAME="267"><FONT COLOR="#888888"><I>  267   </I></FONT></A>
+<A NAME="268"><FONT COLOR="#888888"><I>  268   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  Number of NBest paths to keep */</I></FONT>
+<A NAME="269"><FONT COLOR="#888888"><I>  269   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,88">'voicebox:88'</a></span> PP.dy_preemph=50; */</I></FONT>
+<A NAME="270"><FONT COLOR="#888888"><I>  270   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_preemph = 50.0;
+<A NAME="271"><FONT COLOR="#888888"><I>  271   </I></FONT></A>
+<A NAME="272"><FONT COLOR="#888888"><I>  272   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  pre-emphasis filter frequency (Hz) (to avoid preemphasis, make this very large) */</I></FONT>
+<A NAME="273"><FONT COLOR="#888888"><I>  273   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,89">'voicebox:89'</a></span> PP.dy_spitch=0.2; */</I></FONT>
+<A NAME="274"><FONT COLOR="#888888"><I>  274   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_spitch = 0.2;
+<A NAME="275"><FONT COLOR="#888888"><I>  275   </I></FONT></A>
+<A NAME="276"><FONT COLOR="#888888"><I>  276   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  scale factor for pitch deviation cost */</I></FONT>
+<A NAME="277"><FONT COLOR="#888888"><I>  277   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,90">'voicebox:90'</a></span> PP.dy_wener=0.3; */</I></FONT>
+<A NAME="278"><FONT COLOR="#888888"><I>  278   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_wener = 0.3;
+<A NAME="279"><FONT COLOR="#888888"><I>  279   </I></FONT></A>
+<A NAME="280"><FONT COLOR="#888888"><I>  280   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  DP energy weighting */</I></FONT>
+<A NAME="281"><FONT COLOR="#888888"><I>  281   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,91">'voicebox:91'</a></span> PP.dy_wpitch=0.5; */</I></FONT>
+<A NAME="282"><FONT COLOR="#888888"><I>  282   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_wpitch = 0.5;
+<A NAME="283"><FONT COLOR="#888888"><I>  283   </I></FONT></A>
+<A NAME="284"><FONT COLOR="#888888"><I>  284   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  DP pitch weighting */</I></FONT>
+<A NAME="285"><FONT COLOR="#888888"><I>  285   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,92">'voicebox:92'</a></span> PP.dy_wslope=0.1; */</I></FONT>
+<A NAME="286"><FONT COLOR="#888888"><I>  286   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_wslope = 0.1;
+<A NAME="287"><FONT COLOR="#888888"><I>  287   </I></FONT></A>
+<A NAME="288"><FONT COLOR="#888888"><I>  288   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  DP group delay slope weighting */</I></FONT>
+<A NAME="289"><FONT COLOR="#888888"><I>  289   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,93">'voicebox:93'</a></span> PP.dy_wxcorr=0.8; */</I></FONT>
+<A NAME="290"><FONT COLOR="#888888"><I>  290   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_wxcorr = 0.8;
+<A NAME="291"><FONT COLOR="#888888"><I>  291   </I></FONT></A>
+<A NAME="292"><FONT COLOR="#888888"><I>  292   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  DP cross correlation weighting */</I></FONT>
+<A NAME="293"><FONT COLOR="#888888"><I>  293   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,94">'voicebox:94'</a></span> PP.dy_xwlen=0.01; */</I></FONT>
+<A NAME="294"><FONT COLOR="#888888"><I>  294   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.dy_xwlen = 0.01;
+<A NAME="295"><FONT COLOR="#888888"><I>  295   </I></FONT></A>
+<A NAME="296"><FONT COLOR="#888888"><I>  296   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  cross-correlation length for waveform similarity (sec) */</I></FONT>
+<A NAME="297"><FONT COLOR="#888888"><I>  297   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  RAPT pitch tracker */</I></FONT>
+<A NAME="298"><FONT COLOR="#888888"><I>  298   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,98">'voicebox:98'</a></span> PP.rapt_f0min=50; */</I></FONT>
+<A NAME="299"><FONT COLOR="#888888"><I>  299   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_f0min = 50.0;
+<A NAME="300"><FONT COLOR="#888888"><I>  300   </I></FONT></A>
+<A NAME="301"><FONT COLOR="#888888"><I>  301   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  Min F0 (Hz) */</I></FONT>
+<A NAME="302"><FONT COLOR="#888888"><I>  302   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,99">'voicebox:99'</a></span> PP.rapt_f0max=500; */</I></FONT>
+<A NAME="303"><FONT COLOR="#888888"><I>  303   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_f0max = 500.0;
+<A NAME="304"><FONT COLOR="#888888"><I>  304   </I></FONT></A>
+<A NAME="305"><FONT COLOR="#888888"><I>  305   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  Max F0 (Hz) */</I></FONT>
+<A NAME="306"><FONT COLOR="#888888"><I>  306   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,100">'voicebox:100'</a></span> PP.rapt_tframe=0.01; */</I></FONT>
+<A NAME="307"><FONT COLOR="#888888"><I>  307   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_tframe = 0.01;
+<A NAME="308"><FONT COLOR="#888888"><I>  308   </I></FONT></A>
+<A NAME="309"><FONT COLOR="#888888"><I>  309   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  frame size (s) */</I></FONT>
+<A NAME="310"><FONT COLOR="#888888"><I>  310   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,101">'voicebox:101'</a></span> PP.rapt_tlpw=0.005; */</I></FONT>
+<A NAME="311"><FONT COLOR="#888888"><I>  311   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_tlpw = 0.005;
+<A NAME="312"><FONT COLOR="#888888"><I>  312   </I></FONT></A>
+<A NAME="313"><FONT COLOR="#888888"><I>  313   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  low pass filter window size (s) */</I></FONT>
+<A NAME="314"><FONT COLOR="#888888"><I>  314   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,102">'voicebox:102'</a></span> PP.rapt_tcorw=0.0075; */</I></FONT>
+<A NAME="315"><FONT COLOR="#888888"><I>  315   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_tcorw = 0.0075;
+<A NAME="316"><FONT COLOR="#888888"><I>  316   </I></FONT></A>
+<A NAME="317"><FONT COLOR="#888888"><I>  317   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  correlation window size (s) */</I></FONT>
+<A NAME="318"><FONT COLOR="#888888"><I>  318   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,103">'voicebox:103'</a></span> PP.rapt_candtr=0.3; */</I></FONT>
+<A NAME="319"><FONT COLOR="#888888"><I>  319   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_candtr = 0.3;
+<A NAME="320"><FONT COLOR="#888888"><I>  320   </I></FONT></A>
+<A NAME="321"><FONT COLOR="#888888"><I>  321   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  minimum peak in NCCF */</I></FONT>
+<A NAME="322"><FONT COLOR="#888888"><I>  322   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,104">'voicebox:104'</a></span> PP.rapt_lagwt=0.3; */</I></FONT>
+<A NAME="323"><FONT COLOR="#888888"><I>  323   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_lagwt = 0.3;
+<A NAME="324"><FONT COLOR="#888888"><I>  324   </I></FONT></A>
+<A NAME="325"><FONT COLOR="#888888"><I>  325   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  linear lag taper factor */</I></FONT>
+<A NAME="326"><FONT COLOR="#888888"><I>  326   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,105">'voicebox:105'</a></span> PP.rapt_freqwt=0.02; */</I></FONT>
+<A NAME="327"><FONT COLOR="#888888"><I>  327   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_freqwt = 0.02;
+<A NAME="328"><FONT COLOR="#888888"><I>  328   </I></FONT></A>
+<A NAME="329"><FONT COLOR="#888888"><I>  329   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  cost factor for F0 change */</I></FONT>
+<A NAME="330"><FONT COLOR="#888888"><I>  330   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,106">'voicebox:106'</a></span> PP.rapt_vtranc=0.005; */</I></FONT>
+<A NAME="331"><FONT COLOR="#888888"><I>  331   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_vtranc = 0.005;
+<A NAME="332"><FONT COLOR="#888888"><I>  332   </I></FONT></A>
+<A NAME="333"><FONT COLOR="#888888"><I>  333   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  fixed voice-state transition cost */</I></FONT>
+<A NAME="334"><FONT COLOR="#888888"><I>  334   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,107">'voicebox:107'</a></span> PP.rapt_vtrac=0.5; */</I></FONT>
+<A NAME="335"><FONT COLOR="#888888"><I>  335   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_vtrac = 0.5;
+<A NAME="336"><FONT COLOR="#888888"><I>  336   </I></FONT></A>
+<A NAME="337"><FONT COLOR="#888888"><I>  337   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  delta amplitude modulated transition cost */</I></FONT>
+<A NAME="338"><FONT COLOR="#888888"><I>  338   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,108">'voicebox:108'</a></span> PP.rapt_vtrsc=0.5; */</I></FONT>
+<A NAME="339"><FONT COLOR="#888888"><I>  339   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_vtrsc = 0.5;
+<A NAME="340"><FONT COLOR="#888888"><I>  340   </I></FONT></A>
+<A NAME="341"><FONT COLOR="#888888"><I>  341   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  delta spectrum modulated transition cost */</I></FONT>
+<A NAME="342"><FONT COLOR="#888888"><I>  342   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,109">'voicebox:109'</a></span> PP.rapt_vobias=0.0; */</I></FONT>
+<A NAME="343"><FONT COLOR="#888888"><I>  343   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_vobias = 0.0;
+<A NAME="344"><FONT COLOR="#888888"><I>  344   </I></FONT></A>
+<A NAME="345"><FONT COLOR="#888888"><I>  345   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  bias to encourage voiced hypotheses */</I></FONT>
+<A NAME="346"><FONT COLOR="#888888"><I>  346   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,110">'voicebox:110'</a></span> PP.rapt_doublec=0.35; */</I></FONT>
+<A NAME="347"><FONT COLOR="#888888"><I>  347   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_doublec = 0.35;
+<A NAME="348"><FONT COLOR="#888888"><I>  348   </I></FONT></A>
+<A NAME="349"><FONT COLOR="#888888"><I>  349   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  cost of exact doubling or halving */</I></FONT>
+<A NAME="350"><FONT COLOR="#888888"><I>  350   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,111">'voicebox:111'</a></span> PP.rapt_absnoise=0; */</I></FONT>
+<A NAME="351"><FONT COLOR="#888888"><I>  351   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_absnoise = 0.0;
+<A NAME="352"><FONT COLOR="#888888"><I>  352   </I></FONT></A>
+<A NAME="353"><FONT COLOR="#888888"><I>  353   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  absolute rms noise level */</I></FONT>
+<A NAME="354"><FONT COLOR="#888888"><I>  354   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,112">'voicebox:112'</a></span> PP.rapt_relnoise=2; */</I></FONT>
+<A NAME="355"><FONT COLOR="#888888"><I>  355   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_relnoise = 2.0;
+<A NAME="356"><FONT COLOR="#888888"><I>  356   </I></FONT></A>
+<A NAME="357"><FONT COLOR="#888888"><I>  357   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  rms noise level relative to noise floor */</I></FONT>
+<A NAME="358"><FONT COLOR="#888888"><I>  358   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,113">'voicebox:113'</a></span> PP.rapt_signoise=0.001; */</I></FONT>
+<A NAME="359"><FONT COLOR="#888888"><I>  359   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_signoise = 0.001;
+<A NAME="360"><FONT COLOR="#888888"><I>  360   </I></FONT></A>
+<A NAME="361"><FONT COLOR="#888888"><I>  361   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  ratio of peak signal rms to noise floor (0.001 = 60dB) */</I></FONT>
+<A NAME="362"><FONT COLOR="#888888"><I>  362   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,114">'voicebox:114'</a></span> PP.rapt_ncands=20; */</I></FONT>
+<A NAME="363"><FONT COLOR="#888888"><I>  363   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_ncands = 20.0;
+<A NAME="364"><FONT COLOR="#888888"><I>  364   </I></FONT></A>
+<A NAME="365"><FONT COLOR="#888888"><I>  365   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  max hypotheses at each frame */</I></FONT>
+<A NAME="366"><FONT COLOR="#888888"><I>  366   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,115">'voicebox:115'</a></span> PP.rapt_trms=0.03; */</I></FONT>
+<A NAME="367"><FONT COLOR="#888888"><I>  367   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_trms = 0.03;
+<A NAME="368"><FONT COLOR="#888888"><I>  368   </I></FONT></A>
+<A NAME="369"><FONT COLOR="#888888"><I>  369   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  window length for rms measurement */</I></FONT>
+<A NAME="370"><FONT COLOR="#888888"><I>  370   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,116">'voicebox:116'</a></span> PP.rapt_dtrms=0.02; */</I></FONT>
+<A NAME="371"><FONT COLOR="#888888"><I>  371   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_dtrms = 0.02;
+<A NAME="372"><FONT COLOR="#888888"><I>  372   </I></FONT></A>
+<A NAME="373"><FONT COLOR="#888888"><I>  373   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  window spacing for rms measurement */</I></FONT>
+<A NAME="374"><FONT COLOR="#888888"><I>  374   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,117">'voicebox:117'</a></span> PP.rapt_preemph=-7000; */</I></FONT>
+<A NAME="375"><FONT COLOR="#888888"><I>  375   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_preemph = -7000.0;
+<A NAME="376"><FONT COLOR="#888888"><I>  376   </I></FONT></A>
+<A NAME="377"><FONT COLOR="#888888"><I>  377   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  s-plane position of preemphasis zero */</I></FONT>
+<A NAME="378"><FONT COLOR="#888888"><I>  378   </I></FONT></A>    <FONT COLOR="#117755"><I>/* <span><a href="3,118">'voicebox:118'</a></span> PP.rapt_nfullag=7; */</I></FONT>
+<A NAME="379"><FONT COLOR="#888888"><I>  379   </I></FONT></A>    <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.rapt_nfullag = 7.0;
+<A NAME="380"><FONT COLOR="#888888"><I>  380   </I></FONT></A>
+<A NAME="381"><FONT COLOR="#888888"><I>  381   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  number of full lags to try (must be odd) */</I></FONT>
+<A NAME="382"><FONT COLOR="#888888"><I>  382   </I></FONT></A>    <FONT COLOR="#117755"><I>/*  now check some of the key values for validity */</I></FONT>
+<A NAME="383"><FONT COLOR="#888888"><I>  383   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      if exist(PP.dir_temp)~=7        % check that temp directory exists */</I></FONT>
+<A NAME="384"><FONT COLOR="#888888"><I>  384   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          PP.dir_temp = winenvar('temp');     % else use windows temp directory */</I></FONT>
+<A NAME="385"><FONT COLOR="#888888"><I>  385   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      end */</I></FONT>
+<A NAME="386"><FONT COLOR="#888888"><I>  386   </I></FONT></A>    <FONT COLOR="#117755"><I>/*   */</I></FONT>
+<A NAME="387"><FONT COLOR="#888888"><I>  387   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      [fnp,fnn,fne]=fileparts(mfilename('fullpath')); */</I></FONT>
+<A NAME="388"><FONT COLOR="#888888"><I>  388   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      if exist(PP.shorten)~=2        % check that shorten executable exists */</I></FONT>
+<A NAME="389"><FONT COLOR="#888888"><I>  389   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          PP.shorten=fullfile(fnp,'shorten.exe'); % next try local directory */</I></FONT>
+<A NAME="390"><FONT COLOR="#888888"><I>  390   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          if exist(PP.shorten)~=2        % check if it exists in local directory */</I></FONT>
+<A NAME="391"><FONT COLOR="#888888"><I>  391   </I></FONT></A>    <FONT COLOR="#117755"><I>/*              PP.shorten='shorten.exe'; % finally assume it is on the search path */</I></FONT>
+<A NAME="392"><FONT COLOR="#888888"><I>  392   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          end */</I></FONT>
+<A NAME="393"><FONT COLOR="#888888"><I>  393   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      end */</I></FONT>
+<A NAME="394"><FONT COLOR="#888888"><I>  394   </I></FONT></A>    <FONT COLOR="#117755"><I>/*   */</I></FONT>
+<A NAME="395"><FONT COLOR="#888888"><I>  395   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      if exist(PP.flac)~=2        % check that flac executable exists */</I></FONT>
+<A NAME="396"><FONT COLOR="#888888"><I>  396   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          PP.flac=fullfile(fnp,'flac.exe'); % next try local directory */</I></FONT>
+<A NAME="397"><FONT COLOR="#888888"><I>  397   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          if exist(PP.flac)~=2        % check if it exists in local directory */</I></FONT>
+<A NAME="398"><FONT COLOR="#888888"><I>  398   </I></FONT></A>    <FONT COLOR="#117755"><I>/*              PP.shorten='flac.exe'; % finally assume it is on the search path */</I></FONT>
+<A NAME="399"><FONT COLOR="#888888"><I>  399   </I></FONT></A>    <FONT COLOR="#117755"><I>/*          end */</I></FONT>
+<A NAME="400"><FONT COLOR="#888888"><I>  400   </I></FONT></A>    <FONT COLOR="#117755"><I>/*      end */</I></FONT>
+<A NAME="401"><FONT COLOR="#888888"><I>  401   </I></FONT></A>  <B>}</B>
+<A NAME="402"><FONT COLOR="#888888"><I>  402   </I></FONT></A>
+<A NAME="403"><FONT COLOR="#888888"><I>  403   </I></FONT></A>  <FONT COLOR="#117755"><I>/* <span><a href="3,142">'voicebox:142'</a></span> if nargin==0 */</I></FONT>
+<A NAME="404"><FONT COLOR="#888888"><I>  404   </I></FONT></A>  <FONT COLOR="#117755"><I>/* <span><a href="3,160">'voicebox:160'</a></span> elseif nargin==1 */</I></FONT>
+<A NAME="405"><FONT COLOR="#888888"><I>  405   </I></FONT></A>  <FONT COLOR="#117755"><I>/* <span><a href="3,161">'voicebox:161'</a></span> if isfield(PP,f) */</I></FONT>
+<A NAME="406"><FONT COLOR="#888888"><I>  406   </I></FONT></A>  <FONT COLOR="#117755"><I>/* <span><a href="3,162">'voicebox:162'</a></span> y=PP.(f); */</I></FONT>
+<A NAME="407"><FONT COLOR="#888888"><I>  407   </I></FONT></A>  <FONT COLOR="#112266"><B>return</B></FONT> <A HREF="voicebox_c.html#var_PP" ONCLICK="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'var_PP');" TARGET="rtwreport_document_frame"><FONT COLOR="#1122aa">PP</FONT></A>.memsize;
+<A NAME="408"><FONT COLOR="#888888"><I>  408   </I></FONT></A><B>}</B>
+<A NAME="409"><FONT COLOR="#888888"><I>  409   </I></FONT></A>
+<A NAME="410"><FONT COLOR="#888888"><I>  410   </I></FONT></A><FONT COLOR="#117755"><I>/* End of code generation (voicebox.c) */</I></FONT>
+<A NAME="411"><FONT COLOR="#888888"><I>  411   </I></FONT></A></PRE>
+</TD></TR></TABLE>
+</P>
+</BODY>
+</HTML>
