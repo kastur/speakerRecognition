@@ -1,0 +1,206 @@
+	Total: Insns=186667756 Pcycles=188677102
+New stats:
+	cycles      : 188677102
+	stalls[0]   : 49059875
+	stalls[1]   : 0
+	stalls[2]   : 0
+ and stopped at pcycle 188677102
+ARCH ISS model: built at Nov 30 2012, 06:40:19
+Model used:V5A: L1-I$ = 16 Kb, L1-D$ = 32 Kb, L2-$ = 256 Kb
+
+----THREAD SUMMARY----:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+Total_Pcycles         :	           188677102 
+0_threads_active      :	               0.00%
+1_threads_active      :	             100.00%
+2_threads_active      :	               0.00%
+3_threads_active      :	               0.00%
+Avg_threads_active    :	               1.00
+Total_Rops            :	           264749115            264749115                    0                    0 
+Total_committed_pkts  :	            69802837             69802837                    0                    0 
+Rops_per_InsnWord     :	                1.46                 1.46                 0.00                 0.00 
+Rops/Pkt (IPP)        :	                3.79                 3.79                 0.00                 0.00 
+Rops/Pcyc(IPC)        :	                1.40
+avgTCycles/Pkt(CPP)  :	                0.90
+Commits_1_rotation    :	            69802828 
+Commits_2_rotation    :	                   0 
+Commits_3_rotation    :	                   9 
+Commits_1Tactive      :	            69802836 
+Commits_2Tactive      :	                   0 
+Commits_3Tactive      :	                   0 
+Pcyc_1Tactive/Pkts    :	                2.70
+Pcyc_2Tactive/Pkts    :	                -nan
+Pcyc_3Tactive/Pkts    :	                -nan
+
+-----THREAD-MODES-----:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+MODE_off_pcycles      :	                                1,  0.00%    188667904,100.00%    188667904,100.00% 
+MODE_wait_pcycles     :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+MODE_2cycPkt_pcycles  :	                         51455446, 27.27%            0,  0.00%            0,  0.00% 
+MODE_3cycPkt_pcycles  :	                         88152582, 46.72%            0,  0.00%            0,  0.00% 
+MODE_stall_pcycles    :	                         49059875, 26.00%            0,  0.00%            0,  0.00% 
+
+----PACKET DISTS------:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+PktHas_OneValidSlot   :	    11224372, 16.08%     11224372, 16.08%            0,  0.00%            0,  0.00% 
+PktHas_TwoValidSlots  :	    27686050, 39.66%     27686050, 39.66%            0,  0.00%            0,  0.00% 
+PktHas_ThreeValidSlots:	    14331144, 20.53%     14331144, 20.53%            0,  0.00%            0,  0.00% 
+PktHas_FourValidSlots :	    16561170, 23.73%     16561170, 23.73%            0,  0.00%            0,  0.00% 
+PktHas_MemInsn        :	     8585679, 12.30%      8585679, 12.30%            0,  0.00%            0,  0.00% 
+PktHas_dual_mem       :	     2905641,  4.16%      2905641,  4.16%            0,  0.00%            0,  0.00% 
+PktHas_dual_ld_st     :	     1038288,  1.49%      1038288,  1.49%            0,  0.00%            0,  0.00% 
+PktHas_dual_load      :	     1283473,  1.84%      1283473,  1.84%            0,  0.00%            0,  0.00% 
+PktHas_dual_store     :	      583880,  0.84%       583880,  0.84%            0,  0.00%            0,  0.00% 
+PktHas_single_load    :	     3870532,  5.54%      3870532,  5.54%            0,  0.00%            0,  0.00% 
+PktHas_single_store   :	     1809506,  2.59%      1809506,  2.59%            0,  0.00%            0,  0.00% 
+PktHas_cof            :	    27622403, 39.57%     27622403, 39.57%            0,  0.00%            0,  0.00% 
+PktHas_cof_taken      :	    18907881, 27.09%     18907881, 27.09%            0,  0.00%            0,  0.00% 
+PktHas_dual_jump      :	      443333,  0.64%       443333,  0.64%            0,  0.00%            0,  0.00% 
+PktHas_call           :	     3506363,  5.02%      3506363,  5.02%            0,  0.00%            0,  0.00% 
+PktHas_jmpr           :	     3963273,  5.68%      3963273,  5.68%            0,  0.00%            0,  0.00% 
+PktHas_endloop        :	     7950669, 11.39%      7950669, 11.39%            0,  0.00%            0,  0.00% 
+PktHas_cjmp           :	    12527243, 17.95%     12527243, 17.95%            0,  0.00%            0,  0.00% 
+PktHas_cjmp_taken     :	     3967476,  5.68%      3967476,  5.68%            0,  0.00%            0,  0.00% 
+PktHas_cjmp_dotold    :	     4170324,  5.97%      4170324,  5.97%            0,  0.00%            0,  0.00% 
+PktHas_cjmp_dotnew    :	     7758048, 11.11%      7758048, 11.11%            0,  0.00%            0,  0.00% 
+PktHas_cjmp_newval    :	      598887,  0.86%       598887,  0.86%            0,  0.00%            0,  0.00% 
+PktHas_slot0_insn     :	    35563048, 50.95%     35563048, 50.95%            0,  0.00%            0,  0.00% 
+PktHas_slot1_insn     :	    19372125, 27.75%     19372125, 27.75%            0,  0.00%            0,  0.00% 
+PktHas_slot2_insn     :	    53939367, 77.27%     53939367, 77.27%            0,  0.00%            0,  0.00% 
+PktHas_slot3_insn     :	    66960044, 95.93%     66960044, 95.93%            0,  0.00%            0,  0.00% 
+PktHas_duplex         :	     1504616,  2.16%      1504616,  2.16%            0,  0.00%            0,  0.00% 
+PktHas_memopNVSt      :	      468761,  0.67%       468761,  0.67%            0,  0.00%            0,  0.00% 
+PktHas_dcfetch        :	       65842,  0.09%        65842,  0.09%            0,  0.00%            0,  0.00% 
+PktHas_dcfetch_and_mem:	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_cacheops       :	       61585,  0.09%        61585,  0.09%            0,  0.00%            0,  0.00% 
+PktHas_dczeroa        :	       60112,  0.09%        60112,  0.09%            0,  0.00%            0,  0.00% 
+PktHas_ictagop        :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_icflushop      :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_dctagop        :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_dcflushop      :	        1472,  0.00%         1472,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_l2tagop        :	           1,  0.00%            1,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_l2flushop      :	           1,  0.00%            1,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_l2fetch        :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+PktHas_slot0_ld       :	     4871215,  6.98%      4871215,  6.98%            0,  0.00%            0,  0.00% 
+PktHas_slot1_ld       :	     2729604,  3.91%      2729604,  3.91%            0,  0.00%            0,  0.00% 
+PktHas_slot0_st       :	     3431674,  4.92%      3431674,  4.92%            0,  0.00%            0,  0.00% 
+PktHas_slot1_st       :	      583880,  0.84%       583880,  0.84%            0,  0.00%            0,  0.00% 
+PktHas_slot0_nonmem   :	    27385212, 39.23%     27385212, 39.23%            0,  0.00%            0,  0.00% 
+PktHas_slot1_nonmem   :	    16058641, 23.01%     16058641, 23.01%            0,  0.00%            0,  0.00% 
+PktHas_slot01_nonmem  :	    14979336, 21.46%     14979336, 21.46%            0,  0.00%            0,  0.00% 
+
+-----INSTR DISTS------:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+Total_instrs          :	           186667756            186667756                    0                    0 
+InsnIs_load           :	     7475766,  4.00%      7475766,  4.00%            0,  0.00%            0,  0.00% 
+InsnIs_uncached_ld    :	           7,  0.00%            7,  0.00%            0,  0.00%            0,  0.00% 
+InsnIs_store          :	     4015554,  2.15%      4015554,  2.15%            0,  0.00%            0,  0.00% 
+InsnIs_uncached_st    :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+InsnIs_ChangeOfFlow   :	    28065736, 15.04%     28065736, 15.04%            0,  0.00%            0,  0.00% 
+
+----STALLS PER PKT----:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+TOP_stall_cycles      :	                         49059875, 70.28%            0,  0.00%            0,  0.00% 
+FE_stalls             :	                         47453561, 67.98%            0,  0.00%            0,  0.00% 
+IU_miss               :	                           277817,  0.40%            0,  0.00%            0,  0.00% 
+IU_way_reserved       :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+IU_backpressure       :	                              327,  0.00%            0,  0.00%            0,  0.00% 
+IU_secmiss            :	                              110,  0.00%            0,  0.00%            0,  0.00% 
+IU_uncached           :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+IU_hit                :	                         40332213, 57.78%            0,  0.00%            0,  0.00% 
+IU_itlb_miss          :	                               12,  0.00%            0,  0.00%            0,  0.00% 
+IU_indirect_jump      :	                            64711,  0.09%            0,  0.00%            0,  0.00% 
+IU_fetch_cross        :	                          1837395,  2.63%            0,  0.00%            0,  0.00% 
+IU_dealloc_return     :	                           374174,  0.54%            0,  0.00%            0,  0.00% 
+BP_mispredict         :	                           572890,  0.82%            0,  0.00%            0,  0.00% 
+CU_interlock          :	                          3624207,  5.19%            0,  0.00%            0,  0.00% 
+CU_interlock/tc3stall :	                           369705,  0.53%            0,  0.00%            0,  0.00% 
+DU_L1miss             :	                          1160361,  1.66%            0,  0.00%            0,  0.00% 
+DU_secondary_miss     :	                             5896,  0.01%            0,  0.00%            0,  0.00% 
+DU_misc_stall         :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+DU_uncached_access    :	                             1157,  0.00%            0,  0.00%            0,  0.00% 
+DU_bank_conflict      :	                           138537,  0.20%            0,  0.00%            0,  0.00% 
+DU_stbuff_conflict    :	                           113118,  0.16%            0,  0.00%            0,  0.00% 
+DU_stbuff_hit_replay  :	                            26832,  0.04%            0,  0.00%            0,  0.00% 
+DU_page_crossover     :	                            20595,  0.03%            0,  0.00%            0,  0.00% 
+DU_dtlb_miss          :	                               36,  0.00%            0,  0.00%            0,  0.00% 
+DU_state_conflict     :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+DU_bu_backpressure    :	                            46398,  0.07%            0,  0.00%            0,  0.00% 
+DU_replay_from_fill   :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+DU_uncached_SC        :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+DU_dczero_stall       :	                            93384,  0.13%            0,  0.00%            0,  0.00% 
+CU_isync              :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+CU_tlblocked          :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+CU_kernel_lock        :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+XU_float              :	                                0,  0.00%            0,  0.00%            0,  0.00% 
+
+-----CACHE STATS------:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+IC_uncached/fetch     :	                  15                   15                    0                    0 
+IC_access             :	            40605022             40605022                    0                    0 
+IC_miss_per_pkt       :	       24846,  0.04%        24846,  0.04%            0,  0.00%            0,  0.00% 
+IC_miss_per_insn      :	       24846,  0.01%        24846,  0.01%            0,  0.00%            0,  0.00% 
+IC_sec_miss_per_pkt   :	          55,  0.00%           55,  0.00%            0,  0.00%            0,  0.00% 
+IC_pref/issued        :	        9464, 38.09%         9464, 38.09%            0,  0.00%            0,  0.00% 
+IC_pref/used          :	        7071, 74.71%         7071, 74.71%            0,  0.00%            0,  0.00% 
+IC_fetch_cross        :	      612466,  0.88%       612466,  0.88%            0,  0.00%            0,  0.00% 
+DC_access             :	            11641185             11641185                    0                    0 
+DC_uncached_load      :	           7,  0.00%            7,  0.00%            0,  0.00%            0,  0.00% 
+DC_uncached_stores    :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+DC_pri_misses         :	      280108,  2.49%       280108,  2.49%            0,  0.00%            0,  0.00% 
+DC_pri_misses/ld      :	      113623,  1.50%       113623,  1.50%            0,  0.00%            0,  0.00% 
+DC_pri_misses/st      :	      166485,  4.51%       166485,  4.51%            0,  0.00%            0,  0.00% 
+DC_sec_miss_per_pkt   :	          36,  0.00%           36,  0.00%            0,  0.00%            0,  0.00% 
+DC_castouts           :	               25111                25111                    0                    0 
+DU_stbuff_conflict    :	               37706                37706                    0                    0 
+DC_wt_store           :	      156109,  4.23%       156109,  4.23%            0,  0.00%            0,  0.00% 
+DC_pref_issue         :	                   0                    0                    0                    0 
+DC_hwpref_issue/l1hit :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+DC_hwpref_issue/l2hit :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+DC_hwpref_issue/used  :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+DC_dcfetch/dup_access :	                1005                 1005                    0                    0 
+DC_dcfetch/dropped    :	                   0                    0                    0                    0 
+DC_dcfetch/cache_hit  :	               26108                26108                    0                    0 
+DC_dcfetch/bus_req    :	               39734                39734                    0                    0 
+DC_dcfetch/L2_hit     :	               39690                39690                    0                    0 
+DC_dcfetch/L2_miss    :	                  44                   44                    0                    0 
+DC_dcfetch/used       :	               39233                39233                    0                    0 
+L2_misses             :	        8191,  2.45%         8191,  2.45%            0,  0.00%            0,  0.00% 
+L2_access             :	              334320               334320                    0                    0 
+L2_access/fetch       :	       24851,  7.43%        24851,  7.43%            0,  0.00%            0,  0.00% 
+L2_access/rd          :	      153360, 45.87%       153360, 45.87%            0,  0.00%            0,  0.00% 
+L2_access/wr          :	      156109, 46.69%       156109, 46.69%            0,  0.00%            0,  0.00% 
+L2_misses/fetch       :	         428,  1.72%          428,  1.72%            0,  0.00%            0,  0.00% 
+L2_misses/rd          :	        1499,  0.98%         1499,  0.98%            0,  0.00%            0,  0.00% 
+L2_misses/wr          :	        6264,  4.01%         6264,  4.01%            0,  0.00%            0,  0.00% 
+L2_castout            :	                 677                  677                    0                    0 
+L2_pref/overwrite     :	                   0                    0                    0                    0 
+L2_pref/pagecross     :	                   0                    0                    0                    0 
+L2_pref/l2hit         :	                   0                    0                    0                    0 
+L2_pref/bus_issued    :	                   0                    0                    0                    0 
+L2_pref/used          :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+L2_pref/ipref_issued  :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+L2_pref/ipref_used    :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+L2FETCH_issued        :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+L2FETCH_used          :	           0,  0.00%            0,  0.00%            0,  0.00%            0,  0.00% 
+L2_pref/dcfill        :	                   0                    0                    0                    0 
+L2_pref/dcused        :	                   0                    0                    0                    0 
+L2CT_allocs           :	                6264                 6264                    0                    0 
+L2CT_alloc_fail       :	                   0                    0                    0                    0 
+L2CT_hits             :	                 775                  775                    0                    0 
+L1_itcm/fetch         :	                   0                    0                    0                    0 
+L2_tcm/rd             :	                   0                    0                    0                    0 
+L2_tcm/wr             :	                   0                    0                    0                    0 
+L2_tcm/fetch          :	                   0                    0                    0                    0 
+BP_pkt_bimodal_commits:	            12527243             12527243                    0                    0 
+BP_dotnew_misrate     :	      217269,  2.61%       217269,  2.61%            0,  0.00%            0,  0.00% 
+BP_RAS_misrate        :	       16514,  0.47%        16514,  0.47%            0,  0.00%            0,  0.00% 
+
+-------BUS STATS------:---------Global---------------HW-Thread #0-----------HW-Thread #1-----------HW-Thread #2-----
+AXI_RD1               :	                   7 
+AXI_RD4               :	                8933 
+AXI_WR1               :	                   0 
+AXI_WR4               :	                 844 
+------ BUS TRAFFIC------
+busTrafBytes/rd       :	                                  287257                   0                   0
+busTrafBytes/wr       :	                                   27012                   0                   0
+total bus bytes/rd    :	              287257
+total bus bytes/wr    :	               27012
+prof_ons:             :	                   2
+
+Command line used to invoke simulator:
+hexagon-sim -mv5 --timing --profile Speaker_Hexagon 
