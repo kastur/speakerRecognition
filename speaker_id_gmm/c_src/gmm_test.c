@@ -2,7 +2,7 @@
 #include <string.h>
 #include <time.h>
 #include "hexagon_sim_timer.h"
-
+#define NUM_ITERATION 1
 typedef struct by_speaker {
 	char name[10];
 	double m_m[108];
@@ -126,7 +126,7 @@ int main() {
   double max = 0;
   hexagon_sim_init_timer();
   int ii = 0;
-  for (ii = 0; ii < 10; ii++) {
+  for (ii = 0; ii < NUM_ITERATION; ii++) {
   hexagon_sim_start_timer();
   for (i = 0; i < num_speaker; i++) {
 		by_speaker gmm = speaker_gmm[i];

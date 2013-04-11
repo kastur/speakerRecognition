@@ -1,0 +1,7 @@
+--pflow      # rte, call Program flow
+--cache_i    # I Cache misses
+--cache_d
+--cache_l2
+--memory
+--bus_access
+--pctrace
