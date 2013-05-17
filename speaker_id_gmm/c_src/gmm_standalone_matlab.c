@@ -3,14 +3,15 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h> 
-#include "hexagon_sim_timer.h"
+#include "codegen/lib/gaussmixp_unloop/gaussmixp.h"
+//#include "hexagon_sim_timer.h"
 
 #define FORMAT "%lf\n"
 #define PREC "%.3f\n"
 #define NR_SPEAKER 5
 #define SAMPLE_SIZE 167
 
-typedef double real_T;
+//typedef double real_T;
 
 typedef struct by_speaker {
 	char name[10];
@@ -30,21 +31,21 @@ static real_T logprob[NR_SPEAKER];
 //static real_T logprob1[NR_SPEAKER]
 static real_T min, max;
 
-double gaussmixp(real_T x[12], real_T mu[108], real_T sigma[108], real_T w[9]) {
-	int i = 0, j = 0;
-	real_T score = 0;
-	for (i = 0; i < 9; i++) {
-		real_T y = 0;
-		for (j = 0; j < 12; j++) {
-			real_T m = mu[j * 9 + i];
-			real_T s = 1.0 / sigma[j * 9 + i];
-			//printf("%d %d %lf %lf\n", j, i, m, s);
-			y += (x[j] - m) * (x[j] - m) * s;
-		}
-		score += w[i] * (1.0/pow(6.828 ,6)) * (1.0 / pow(1.0,0.5)) * exp(-0.5 * y);
-	}
-	return log(score);
-}
+// double gaussmixp(real_T x[12], real_T mu[108], real_T sigma[108], real_T w[9]) {
+// 	int i = 0, j = 0;
+// 	real_T score = 0;
+// 	for (i = 0; i < 9; i++) {
+// 		real_T y = 0;
+// 		for (j = 0; j < 12; j++) {
+// 			real_T m = mu[j * 9 + i];
+// 			real_T s = 1.0 / sigma[j * 9 + i];
+// 			//printf("%d %d %lf %lf\n", j, i, m, s);
+// 			y += (x[j] - m) * (x[j] - m) * s;
+// 		}
+// 		score += w[i] * (1.0/pow(6.828 ,6)) * (1.0 / pow(1.0,0.5)) * exp(-0.5 * y);
+// 	}
+// 	return log(score);
+// }
 
 real_T round_real(real_T x) {
 	if (x > max) {
@@ -189,8 +190,8 @@ int main() {
 	int k = 1, i = 0, j = 0;
 	int correct = 0;
 	
-	hexagon_sim_init_timer();
-	hexagon_sim_start_timer();
+	// hexagon_sim_init_timer();
+	// hexagon_sim_start_timer();
 
 	//for (k = 1; k <= 48; k++) {
 		memset(logprob, 0, sizeof(logprob));
@@ -234,8 +235,8 @@ int main() {
 	// printf(PREC, max);
 
 
-	hexagon_sim_end_timer();
-	hexagon_sim_show_timer(stdout);
+	// hexagon_sim_end_timer();
+	// hexagon_sim_show_timer(stdout);
 	
 	return 0;
 }
