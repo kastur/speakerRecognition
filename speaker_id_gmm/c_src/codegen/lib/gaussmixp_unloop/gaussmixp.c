@@ -13,68 +13,68 @@
 #include "sum.h"
 #include "gaussmixp_data.h"
 
-/* Type Definitions */
-typedef struct {
-  char_T dir_temp[7];
-  char_T dir_data[18];
-  char_T shorten[18];
-  char_T flac[15];
-  char_T sfsbin[28];
-  char_T sfssuffix[4];
-  real_T memsize;
-  real_T dy_cpfrac;
-  real_T dy_cproj;
-  real_T dy_cspurt;
-  real_T dy_dopsp;
-  real_T dy_ewdly;
-  real_T dy_ewlen;
-  real_T dy_ewtaper;
-  real_T dy_fwlen;
-  real_T dy_fxmax;
-  real_T dy_fxmin;
-  real_T dy_fxminf;
-  real_T dy_gwlen;
-  real_T dy_lpcdur;
-  real_T dy_lpcn;
-  real_T dy_lpcnf;
-  real_T dy_lpcstep;
-  real_T dy_nbest;
-  real_T dy_preemph;
-  real_T dy_spitch;
-  real_T dy_wener;
-  real_T dy_wpitch;
-  real_T dy_wslope;
-  real_T dy_wxcorr;
-  real_T dy_xwlen;
-  real_T rapt_f0min;
-  real_T rapt_f0max;
-  real_T rapt_tframe;
-  real_T rapt_tlpw;
-  real_T rapt_tcorw;
-  real_T rapt_candtr;
-  real_T rapt_lagwt;
-  real_T rapt_freqwt;
-  real_T rapt_vtranc;
-  real_T rapt_vtrac;
-  real_T rapt_vtrsc;
-  real_T rapt_vobias;
-  real_T rapt_doublec;
-  real_T rapt_absnoise;
-  real_T rapt_relnoise;
-  real_T rapt_signoise;
-  real_T rapt_ncands;
-  real_T rapt_trms;
-  real_T rapt_dtrms;
-  real_T rapt_preemph;
-  real_T rapt_nfullag;
-} struct_T;
+// /* Type Definitions */
+// typedef struct {
+//   char_T dir_temp[7];
+//   char_T dir_data[18];
+//   char_T shorten[18];
+//   char_T flac[15];
+//   char_T sfsbin[28];
+//   char_T sfssuffix[4];
+//   real_T memsize;
+//   real_T dy_cpfrac;
+//   real_T dy_cproj;
+//   real_T dy_cspurt;
+//   real_T dy_dopsp;
+//   real_T dy_ewdly;
+//   real_T dy_ewlen;
+//   real_T dy_ewtaper;
+//   real_T dy_fwlen;
+//   real_T dy_fxmax;
+//   real_T dy_fxmin;
+//   real_T dy_fxminf;
+//   real_T dy_gwlen;
+//   real_T dy_lpcdur;
+//   real_T dy_lpcn;
+//   real_T dy_lpcnf;
+//   real_T dy_lpcstep;
+//   real_T dy_nbest;
+//   real_T dy_preemph;
+//   real_T dy_spitch;
+//   real_T dy_wener;
+//   real_T dy_wpitch;
+//   real_T dy_wslope;
+//   real_T dy_wxcorr;
+//   real_T dy_xwlen;
+//   real_T rapt_f0min;
+//   real_T rapt_f0max;
+//   real_T rapt_tframe;
+//   real_T rapt_tlpw;
+//   real_T rapt_tcorw;
+//   real_T rapt_candtr;
+//   real_T rapt_lagwt;
+//   real_T rapt_freqwt;
+//   real_T rapt_vtranc;
+//   real_T rapt_vtrac;
+//   real_T rapt_vtrsc;
+//   real_T rapt_vobias;
+//   real_T rapt_doublec;
+//   real_T rapt_absnoise;
+//   real_T rapt_relnoise;
+//   real_T rapt_signoise;
+//   real_T rapt_ncands;
+//   real_T rapt_trms;
+//   real_T rapt_dtrms;
+//   real_T rapt_preemph;
+//   real_T rapt_nfullag;
+// } struct_T;
 
-/* Named Constants */
+// /* Named Constants */
 
-/* Variable Declarations */
+// /* Variable Declarations */
 
-/* Variable Definitions */
-static struct_T PP;
+// /* Variable Definitions */
+// static struct_T PP;
 
 /* Function Declarations */
 static real_T rt_powd_snf(real_T u0, real_T u1);
@@ -142,22 +142,22 @@ real_T gaussmixp(const real_T y[12], const real_T m[108], const real_T v[108],
   //       printf("%lf ", y[kk]);
   // }
   int32_T i;
-  static const char_T cv0[7] = { 'F', ':', '\\', 'T', 'E', 'M', 'P' };
+  // static const char_T cv0[7] = { 'F', ':', '\\', 'T', 'E', 'M', 'P' };
 
-  static const char_T cv1[18] = { 'E', ':', '\\', 'd', 'm', 'b', '\\', 'd', 'a',
-    't', 'a', '\\', 's', 'p', 'e', 'e', 'c', 'h' };
+  // static const char_T cv1[18] = { 'E', ':', '\\', 'd', 'm', 'b', '\\', 'd', 'a',
+  //   't', 'a', '\\', 's', 'p', 'e', 'e', 'c', 'h' };
 
-  static const char_T cv2[18] = { 'C', ':', '\\', 'b', 'i', 'n', '\\', 's', 'h',
-    'o', 'r', 't', 'e', 'n', '.', 'e', 'x', 'e' };
+  // static const char_T cv2[18] = { 'C', ':', '\\', 'b', 'i', 'n', '\\', 's', 'h',
+  //   'o', 'r', 't', 'e', 'n', '.', 'e', 'x', 'e' };
 
-  static const char_T cv3[15] = { 'C', ':', '\\', 'b', 'i', 'n', '\\', 'f', 'l',
-    'a', 'c', '.', 'e', 'x', 'e' };
+  // static const char_T cv3[15] = { 'C', ':', '\\', 'b', 'i', 'n', '\\', 'f', 'l',
+  //   'a', 'c', '.', 'e', 'x', 'e' };
 
-  static const char_T cv4[28] = { 'F', ':', '\\', 'P', 'r', 'o', 'g', 'r', 'a',
-    'm', ' ', 'F', 'i', 'l', 'e', 's', '\\', 'S', 'F', 'S', '\\', 'P', 'r', 'o',
-    'g', 'r', 'a', 'm' };
+  // static const char_T cv4[28] = { 'F', ':', '\\', 'P', 'r', 'o', 'g', 'r', 'a',
+  //   'm', ' ', 'F', 'i', 'l', 'e', 's', '\\', 'S', 'F', 'S', '\\', 'P', 'r', 'o',
+  //   'g', 'r', 'a', 'm' };
 
-  static const char_T cv5[4] = { '.', 'e', 'x', 'e' };
+  // static const char_T cv5[4] = { '.', 'e', 'x', 'e' };
 
   real_T b_y[108];
   real_T x[9];
@@ -267,250 +267,250 @@ real_T gaussmixp(const real_T y[12], const real_T m[108], const real_T v[108],
   /*    Free Software Foundation, Inc.,675 Mass Ave, Cambridge, MA 02139, USA. */
   /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
   /* 'voicebox:57' if isempty(PP) */
-  if (!PP_not_empty) {
-    /*  System-dependent directory paths and constants */
-    /* 'voicebox:61' PP.dir_temp='F:\TEMP'; */
-    for (i = 0; i < 7; i++) {
-      PP.dir_temp[i] = cv0[i];
-    }
+  // if (!PP_not_empty) {
+  //   /*  System-dependent directory paths and constants */
+  //   /* 'voicebox:61' PP.dir_temp='F:\TEMP'; */
+  //   for (i = 0; i < 7; i++) {
+  //     PP.dir_temp[i] = cv0[i];
+  //   }
 
-    PP_not_empty = TRUE;
+  //   PP_not_empty = TRUE;
 
-    /*  directory for storing temporary files */
-    /* 'voicebox:62' PP.dir_data='E:\dmb\data\speech'; */
-    for (i = 0; i < 18; i++) {
-      PP.dir_data[i] = cv1[i];
+  //   /*  directory for storing temporary files */
+  //   /* 'voicebox:62' PP.dir_data='E:\dmb\data\speech'; */
+  //   for (i = 0; i < 18; i++) {
+  //     PP.dir_data[i] = cv1[i];
 
-      /*  default directory to preappend to speech data file names */
-      /* 'voicebox:63' PP.shorten='C:\bin\shorten.exe'; */
-      PP.shorten[i] = cv2[i];
-    }
+  //     /*  default directory to preappend to speech data file names */
+  //     /* 'voicebox:63' PP.shorten='C:\bin\shorten.exe'; */
+  //     PP.shorten[i] = cv2[i];
+  //   }
 
-    /*  location of shorten executable */
-    /* 'voicebox:64' PP.flac='C:\bin\flac.exe'; */
-    for (i = 0; i < 15; i++) {
-      PP.flac[i] = cv3[i];
-    }
+  //   /*  location of shorten executable */
+  //   /* 'voicebox:64' PP.flac='C:\bin\flac.exe'; */
+  //   for (i = 0; i < 15; i++) {
+  //     PP.flac[i] = cv3[i];
+  //   }
 
-    /*  location of flac executable */
-    /* 'voicebox:65' PP.sfsbin='F:\Program Files\SFS\Program'; */
-    for (i = 0; i < 28; i++) {
-      PP.sfsbin[i] = cv4[i];
-    }
+  //   /*  location of flac executable */
+  //   /* 'voicebox:65' PP.sfsbin='F:\Program Files\SFS\Program'; */
+  //   for (i = 0; i < 28; i++) {
+  //     PP.sfsbin[i] = cv4[i];
+  //   }
 
-    /*  location of Speech Filing Sysytem binaries */
-    /* 'voicebox:66' PP.sfssuffix='.exe'; */
-    for (i = 0; i < 4; i++) {
-      PP.sfssuffix[i] = cv5[i];
-    }
+  //   /*  location of Speech Filing Sysytem binaries */
+  //   /* 'voicebox:66' PP.sfssuffix='.exe'; */
+  //   for (i = 0; i < 4; i++) {
+  //     PP.sfssuffix[i] = cv5[i];
+  //   }
 
-    /*  suffix for Speech Filing Sysytem binaries */
-    /* 'voicebox:67' PP.memsize=50e6; */
-    PP.memsize = 5.0E+7;
+  //   /*  suffix for Speech Filing Sysytem binaries */
+  //   /* 'voicebox:67' PP.memsize=50e6; */
+  //   PP.memsize = 5.0E+7;
 
-    /*  Maximum amount of temporary memory to use (Bytes) */
-    /*  DYPSA glottal closure identifier */
-    /* 'voicebox:71' PP.dy_cpfrac=0.3; */
-    PP.dy_cpfrac = 0.3;
+  //   /*  Maximum amount of temporary memory to use (Bytes) */
+  //   /*  DYPSA glottal closure identifier */
+  //   /* 'voicebox:71' PP.dy_cpfrac=0.3; */
+  //   PP.dy_cpfrac = 0.3;
 
-    /*  presumed closed phase fraction of larynx cycle */
-    /* 'voicebox:72' PP.dy_cproj=0.2; */
-    PP.dy_cproj = 0.2;
+  //   /*  presumed closed phase fraction of larynx cycle */
+  //   /* 'voicebox:72' PP.dy_cproj=0.2; */
+  //   PP.dy_cproj = 0.2;
 
-    /*  cost of projected candidate */
-    /* 'voicebox:73' PP.dy_cspurt=-0.45; */
-    PP.dy_cspurt = -0.45;
+  //   /*  cost of projected candidate */
+  //   /* 'voicebox:73' PP.dy_cspurt=-0.45; */
+  //   PP.dy_cspurt = -0.45;
 
-    /*  cost of a talkspurt */
-    /* 'voicebox:74' PP.dy_dopsp=1; */
-    PP.dy_dopsp = 1.0;
+  //   /*  cost of a talkspurt */
+  //   /* 'voicebox:74' PP.dy_dopsp=1; */
+  //   PP.dy_dopsp = 1.0;
 
-    /*  Use phase slope projection (1) or not (0)? */
-    /* 'voicebox:75' PP.dy_ewdly=0.0008; */
-    PP.dy_ewdly = 0.0008;
+  //   /*  Use phase slope projection (1) or not (0)? */
+  //   /* 'voicebox:75' PP.dy_ewdly=0.0008; */
+  //   PP.dy_ewdly = 0.0008;
 
-    /*  window delay for energy cost function term [~ energy peak delay from closure] (sec) */
-    /* 'voicebox:76' PP.dy_ewlen=0.003; */
-    PP.dy_ewlen = 0.003;
+  //   /*  window delay for energy cost function term [~ energy peak delay from closure] (sec) */
+  //   /* 'voicebox:76' PP.dy_ewlen=0.003; */
+  //   PP.dy_ewlen = 0.003;
 
-    /*  window length for energy cost function term (sec) */
-    /* 'voicebox:77' PP.dy_ewtaper=0.001; */
-    PP.dy_ewtaper = 0.001;
+  //   /*  window length for energy cost function term (sec) */
+  //   /* 'voicebox:77' PP.dy_ewtaper=0.001; */
+  //   PP.dy_ewtaper = 0.001;
 
-    /*  taper length for energy cost function window (sec) */
-    /* 'voicebox:78' PP.dy_fwlen=0.00045; */
-    PP.dy_fwlen = 0.00045;
+  //   /*  taper length for energy cost function window (sec) */
+  //   /* 'voicebox:78' PP.dy_fwlen=0.00045; */
+  //   PP.dy_fwlen = 0.00045;
 
-    /*  window length used to smooth group delay (sec) */
-    /* 'voicebox:79' PP.dy_fxmax=500; */
-    PP.dy_fxmax = 500.0;
+  //   /*  window length used to smooth group delay (sec) */
+  //   /* 'voicebox:79' PP.dy_fxmax=500; */
+  //   PP.dy_fxmax = 500.0;
 
-    /*  max larynx frequency (Hz) */
-    /* 'voicebox:80' PP.dy_fxmin=50; */
-    PP.dy_fxmin = 50.0;
+  //   /*  max larynx frequency (Hz) */
+  //   /* 'voicebox:80' PP.dy_fxmin=50; */
+  //   PP.dy_fxmin = 50.0;
 
-    /*  min larynx frequency (Hz) */
-    /* 'voicebox:81' PP.dy_fxminf=60; */
-    PP.dy_fxminf = 60.0;
+  //   /*  min larynx frequency (Hz) */
+  //   /* 'voicebox:81' PP.dy_fxminf=60; */
+  //   PP.dy_fxminf = 60.0;
 
-    /*  min larynx frequency (Hz) [used for Frobenius norm only] */
-    /* 'voicebox:82' PP.dy_gwlen=0.0030; */
-    PP.dy_gwlen = 0.003;
+  //   /*  min larynx frequency (Hz) [used for Frobenius norm only] */
+  //   /* 'voicebox:82' PP.dy_gwlen=0.0030; */
+  //   PP.dy_gwlen = 0.003;
 
-    /*  group delay evaluation window length (sec) */
-    /* 'voicebox:83' PP.dy_lpcdur=0.020; */
-    PP.dy_lpcdur = 0.02;
+  //   /*  group delay evaluation window length (sec) */
+  //   /* 'voicebox:83' PP.dy_lpcdur=0.020; */
+  //   PP.dy_lpcdur = 0.02;
 
-    /*  lpc analysis frame length (sec) */
-    /* 'voicebox:84' PP.dy_lpcn=2; */
-    PP.dy_lpcn = 2.0;
+  //   /*  lpc analysis frame length (sec) */
+  //   /* 'voicebox:84' PP.dy_lpcn=2; */
+  //   PP.dy_lpcn = 2.0;
 
-    /*  lpc additional poles */
-    /* 'voicebox:85' PP.dy_lpcnf=0.001; */
-    PP.dy_lpcnf = 0.001;
+  //   /*  lpc additional poles */
+  //   /* 'voicebox:85' PP.dy_lpcnf=0.001; */
+  //   PP.dy_lpcnf = 0.001;
 
-    /*  lpc poles per Hz (1/Hz) */
-    /* 'voicebox:86' PP.dy_lpcstep=0.010; */
-    PP.dy_lpcstep = 0.01;
+  //   /*  lpc poles per Hz (1/Hz) */
+  //   /* 'voicebox:86' PP.dy_lpcstep=0.010; */
+  //   PP.dy_lpcstep = 0.01;
 
-    /*  lpc analysis step (sec) */
-    /* 'voicebox:87' PP.dy_nbest=5; */
-    PP.dy_nbest = 5.0;
+  //   /*  lpc analysis step (sec) */
+  //   /* 'voicebox:87' PP.dy_nbest=5; */
+  //   PP.dy_nbest = 5.0;
 
-    /*  Number of NBest paths to keep */
-    /* 'voicebox:88' PP.dy_preemph=50; */
-    PP.dy_preemph = 50.0;
+  //   /*  Number of NBest paths to keep */
+  //   /* 'voicebox:88' PP.dy_preemph=50; */
+  //   PP.dy_preemph = 50.0;
 
-    /*  pre-emphasis filter frequency (Hz) (to avoid preemphasis, make this very large) */
-    /* 'voicebox:89' PP.dy_spitch=0.2; */
-    PP.dy_spitch = 0.2;
+  //   /*  pre-emphasis filter frequency (Hz) (to avoid preemphasis, make this very large) */
+  //   /* 'voicebox:89' PP.dy_spitch=0.2; */
+  //   PP.dy_spitch = 0.2;
 
-    /*  scale factor for pitch deviation cost */
-    /* 'voicebox:90' PP.dy_wener=0.3; */
-    PP.dy_wener = 0.3;
+  //   /*  scale factor for pitch deviation cost */
+  //   /* 'voicebox:90' PP.dy_wener=0.3; */
+  //   PP.dy_wener = 0.3;
 
-    /*  DP energy weighting */
-    /* 'voicebox:91' PP.dy_wpitch=0.5; */
-    PP.dy_wpitch = 0.5;
+  //   /*  DP energy weighting */
+  //   /* 'voicebox:91' PP.dy_wpitch=0.5; */
+  //   PP.dy_wpitch = 0.5;
 
-    /*  DP pitch weighting */
-    /* 'voicebox:92' PP.dy_wslope=0.1; */
-    PP.dy_wslope = 0.1;
+  //   /*  DP pitch weighting */
+  //   /* 'voicebox:92' PP.dy_wslope=0.1; */
+  //   PP.dy_wslope = 0.1;
 
-    /*  DP group delay slope weighting */
-    /* 'voicebox:93' PP.dy_wxcorr=0.8; */
-    PP.dy_wxcorr = 0.8;
+  //     DP group delay slope weighting 
+  //   /* 'voicebox:93' PP.dy_wxcorr=0.8; */
+  //   PP.dy_wxcorr = 0.8;
 
-    /*  DP cross correlation weighting */
-    /* 'voicebox:94' PP.dy_xwlen=0.01; */
-    PP.dy_xwlen = 0.01;
+  //   /*  DP cross correlation weighting */
+  //   /* 'voicebox:94' PP.dy_xwlen=0.01; */
+  //   PP.dy_xwlen = 0.01;
 
-    /*  cross-correlation length for waveform similarity (sec) */
-    /*  RAPT pitch tracker */
-    /* 'voicebox:98' PP.rapt_f0min=50; */
-    PP.rapt_f0min = 50.0;
+  //   /*  cross-correlation length for waveform similarity (sec) */
+  //   /*  RAPT pitch tracker */
+  //   /* 'voicebox:98' PP.rapt_f0min=50; */
+  //   PP.rapt_f0min = 50.0;
 
-    /*  Min F0 (Hz) */
-    /* 'voicebox:99' PP.rapt_f0max=500; */
-    PP.rapt_f0max = 500.0;
+  //   /*  Min F0 (Hz) */
+  //   /* 'voicebox:99' PP.rapt_f0max=500; */
+  //   PP.rapt_f0max = 500.0;
 
-    /*  Max F0 (Hz) */
-    /* 'voicebox:100' PP.rapt_tframe=0.01; */
-    PP.rapt_tframe = 0.01;
+  //   /*  Max F0 (Hz) */
+  //   /* 'voicebox:100' PP.rapt_tframe=0.01; */
+  //   PP.rapt_tframe = 0.01;
 
-    /*  frame size (s) */
-    /* 'voicebox:101' PP.rapt_tlpw=0.005; */
-    PP.rapt_tlpw = 0.005;
+  //   /*  frame size (s) */
+  //   /* 'voicebox:101' PP.rapt_tlpw=0.005; */
+  //   PP.rapt_tlpw = 0.005;
 
-    /*  low pass filter window size (s) */
-    /* 'voicebox:102' PP.rapt_tcorw=0.0075; */
-    PP.rapt_tcorw = 0.0075;
+  //   /*  low pass filter window size (s) */
+  //   /* 'voicebox:102' PP.rapt_tcorw=0.0075; */
+  //   PP.rapt_tcorw = 0.0075;
 
-    /*  correlation window size (s) */
-    /* 'voicebox:103' PP.rapt_candtr=0.3; */
-    PP.rapt_candtr = 0.3;
+  //   /*  correlation window size (s) */
+  //   /* 'voicebox:103' PP.rapt_candtr=0.3; */
+  //   PP.rapt_candtr = 0.3;
 
-    /*  minimum peak in NCCF */
-    /* 'voicebox:104' PP.rapt_lagwt=0.3; */
-    PP.rapt_lagwt = 0.3;
+  //   /*  minimum peak in NCCF */
+  //   /* 'voicebox:104' PP.rapt_lagwt=0.3; */
+  //   PP.rapt_lagwt = 0.3;
 
-    /*  linear lag taper factor */
-    /* 'voicebox:105' PP.rapt_freqwt=0.02; */
-    PP.rapt_freqwt = 0.02;
+  //   /*  linear lag taper factor */
+  //   /* 'voicebox:105' PP.rapt_freqwt=0.02; */
+  //   PP.rapt_freqwt = 0.02;
 
-    /*  cost factor for F0 change */
-    /* 'voicebox:106' PP.rapt_vtranc=0.005; */
-    PP.rapt_vtranc = 0.005;
+  //   /*  cost factor for F0 change */
+  //   /* 'voicebox:106' PP.rapt_vtranc=0.005; */
+  //   PP.rapt_vtranc = 0.005;
 
-    /*  fixed voice-state transition cost */
-    /* 'voicebox:107' PP.rapt_vtrac=0.5; */
-    PP.rapt_vtrac = 0.5;
+  //   /*  fixed voice-state transition cost */
+  //   /* 'voicebox:107' PP.rapt_vtrac=0.5; */
+  //   PP.rapt_vtrac = 0.5;
 
-    /*  delta amplitude modulated transition cost */
-    /* 'voicebox:108' PP.rapt_vtrsc=0.5; */
-    PP.rapt_vtrsc = 0.5;
+  //   /*  delta amplitude modulated transition cost */
+  //   /* 'voicebox:108' PP.rapt_vtrsc=0.5; */
+  //   PP.rapt_vtrsc = 0.5;
 
-    /*  delta spectrum modulated transition cost */
-    /* 'voicebox:109' PP.rapt_vobias=0.0; */
-    PP.rapt_vobias = 0.0;
+  //   /*  delta spectrum modulated transition cost */
+  //   /* 'voicebox:109' PP.rapt_vobias=0.0; */
+  //   PP.rapt_vobias = 0.0;
 
-    /*  bias to encourage voiced hypotheses */
-    /* 'voicebox:110' PP.rapt_doublec=0.35; */
-    PP.rapt_doublec = 0.35;
+  //   /*  bias to encourage voiced hypotheses */
+  //   /* 'voicebox:110' PP.rapt_doublec=0.35; */
+  //   PP.rapt_doublec = 0.35;
 
-    /*  cost of exact doubling or halving */
-    /* 'voicebox:111' PP.rapt_absnoise=0; */
-    PP.rapt_absnoise = 0.0;
+  //   /*  cost of exact doubling or halving */
+  //   /* 'voicebox:111' PP.rapt_absnoise=0; */
+  //   PP.rapt_absnoise = 0.0;
 
-    /*  absolute rms noise level */
-    /* 'voicebox:112' PP.rapt_relnoise=2; */
-    PP.rapt_relnoise = 2.0;
+  //   /*  absolute rms noise level */
+  //   /* 'voicebox:112' PP.rapt_relnoise=2; */
+  //   PP.rapt_relnoise = 2.0;
 
-    /*  rms noise level relative to noise floor */
-    /* 'voicebox:113' PP.rapt_signoise=0.001; */
-    PP.rapt_signoise = 0.001;
+  //   /*  rms noise level relative to noise floor */
+  //   /* 'voicebox:113' PP.rapt_signoise=0.001; */
+  //   PP.rapt_signoise = 0.001;
 
-    /*  ratio of peak signal rms to noise floor (0.001 = 60dB) */
-    /* 'voicebox:114' PP.rapt_ncands=20; */
-    PP.rapt_ncands = 20.0;
+  //   /*  ratio of peak signal rms to noise floor (0.001 = 60dB) */
+  //   /* 'voicebox:114' PP.rapt_ncands=20; */
+  //   PP.rapt_ncands = 20.0;
 
-    /*  max hypotheses at each frame */
-    /* 'voicebox:115' PP.rapt_trms=0.03; */
-    PP.rapt_trms = 0.03;
+  //   /*  max hypotheses at each frame */
+  //   /* 'voicebox:115' PP.rapt_trms=0.03; */
+  //   PP.rapt_trms = 0.03;
 
-    /*  window length for rms measurement */
-    /* 'voicebox:116' PP.rapt_dtrms=0.02; */
-    PP.rapt_dtrms = 0.02;
+  //   /*  window length for rms measurement */
+  //   /* 'voicebox:116' PP.rapt_dtrms=0.02; */
+  //   PP.rapt_dtrms = 0.02;
 
-    /*  window spacing for rms measurement */
-    /* 'voicebox:117' PP.rapt_preemph=-7000; */
-    PP.rapt_preemph = -7000.0;
+  //   /*  window spacing for rms measurement */
+  //   /* 'voicebox:117' PP.rapt_preemph=-7000; */
+  //   PP.rapt_preemph = -7000.0;
 
-    /*  s-plane position of preemphasis zero */
-    /* 'voicebox:118' PP.rapt_nfullag=7; */
-    PP.rapt_nfullag = 7.0;
+  //   /*  s-plane position of preemphasis zero */
+  //   /* 'voicebox:118' PP.rapt_nfullag=7; */
+  //   PP.rapt_nfullag = 7.0;
 
-    /*  number of full lags to try (must be odd) */
-    /*  now check some of the key values for validity */
-    /*      if exist(PP.dir_temp)~=7        % check that temp directory exists */
-    /*          PP.dir_temp = winenvar('temp');     % else use windows temp directory */
-    /*      end */
-    /*   */
-    /*      [fnp,fnn,fne]=fileparts(mfilename('fullpath')); */
-    /*      if exist(PP.shorten)~=2        % check that shorten executable exists */
-    /*          PP.shorten=fullfile(fnp,'shorten.exe'); % next try local directory */
-    /*          if exist(PP.shorten)~=2        % check if it exists in local directory */
-    /*              PP.shorten='shorten.exe'; % finally assume it is on the search path */
-    /*          end */
-    /*      end */
-    /*   */
-    /*      if exist(PP.flac)~=2        % check that flac executable exists */
-    /*          PP.flac=fullfile(fnp,'flac.exe'); % next try local directory */
-    /*          if exist(PP.flac)~=2        % check if it exists in local directory */
-    /*              PP.shorten='flac.exe'; % finally assume it is on the search path */
-    /*          end */
-    /*      end */
-  }
+  //   /*  number of full lags to try (must be odd) */
+  //   /*  now check some of the key values for validity */
+  //   /*      if exist(PP.dir_temp)~=7        % check that temp directory exists */
+  //   /*          PP.dir_temp = winenvar('temp');     % else use windows temp directory */
+  //   /*      end */
+  //   /*   */
+  //   /*      [fnp,fnn,fne]=fileparts(mfilename('fullpath')); */
+  //   /*      if exist(PP.shorten)~=2        % check that shorten executable exists */
+  //   /*          PP.shorten=fullfile(fnp,'shorten.exe'); % next try local directory */
+  //   /*          if exist(PP.shorten)~=2        % check if it exists in local directory */
+  //   /*              PP.shorten='shorten.exe'; % finally assume it is on the search path */
+  //   /*          end */
+  //   /*      end */
+  //   /*   */
+  //   /*      if exist(PP.flac)~=2        % check that flac executable exists */
+  //   /*          PP.flac=fullfile(fnp,'flac.exe'); % next try local directory */
+  //   /*          if exist(PP.flac)~=2        % check if it exists in local directory */
+  //   /*              PP.shorten='flac.exe'; % finally assume it is on the search path */
+  //   /*          end */
+  //   /*      end */
+  // }
 
   /* 'voicebox:142' if nargin==0 */
   /* 'voicebox:160' elseif nargin==1 */
