@@ -10,8 +10,8 @@
 #include <string.h>
 #include <hexagon_standalone.h>
 
-#define MAX 2
-#define PPQ 2   //pixels per quadrant
+#define MAX 100
+#define PPQ 100   //pixels per quadrant
 #define QRANGE 2.0F  // quadrant range
 
 #if __HEXAGON_ARCH__ >= 4
@@ -48,7 +48,6 @@ int main (int argc, char **argv)
 {
     int i, j, k;
 
-    printf("%d\n", COMPUTE_THREADS);
     iterations = (argc >1)? strtol (argv [1], NULL, 10): MAX;
 
     // Create threads to compute four quadrants of the fractal
